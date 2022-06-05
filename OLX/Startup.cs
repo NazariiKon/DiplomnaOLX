@@ -15,6 +15,9 @@ using OLX.Entities;
 using OLX.Mapper;
 using System;
 using System.Text;
+using OLX.Models;
+using OLX.Abstract;
+using OLX.Services;
 
 namespace OLX
 {
@@ -65,6 +68,15 @@ namespace OLX
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+           
+            services.AddSingleton(emailConfig);
+
+            services.AddScoped<IEmailSender, EmailSender>();
+
 
             services.AddControllersWithViews();
             services.AddSwaggerGen();

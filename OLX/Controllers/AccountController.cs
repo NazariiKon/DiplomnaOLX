@@ -14,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using OLX.Models;
+using System.Net;
+using OLX.Abstract;
 
 namespace WebLoginAndRegister.Controllers
 {
@@ -26,17 +29,19 @@ namespace WebLoginAndRegister.Controllers
         private readonly SignInManager<DbUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
+        private readonly IEmailSender _emailSender;
 
         public AccountController(EFDbContext context,
          UserManager<DbUser> userManager,
          SignInManager<DbUser> signInManager,
-         IConfiguration configuration, IMapper mapper)
+         IConfiguration configuration, IMapper mapper, IEmailSender emailSender)
         {
             _userManager = userManager;
             _context = context;
             _signInManager = signInManager;
             _configuration = configuration;
             _mapper = mapper;
+            _emailSender = emailSender;
         }
 
         [HttpPost("login")]
@@ -132,6 +137,36 @@ namespace WebLoginAndRegister.Controllers
                 expires: DateTime.Now.AddHours(1));
 
             return new JwtSecurityTokenHandler().WriteToken(jwt);
+        }
+        [HttpPost("forgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel forgotPasswordModel)
+        {
+            var user = await _userManager.FindByEmailAsync(forgotPasswordModel.Email);
+            if (user == null)
+                return BadRequest("Not found user");
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var frontEndURL = _configuration.GetValue<string>("FrontEndURL");
+
+            var callbackUrl =
+                $"{frontEndURL}/resetpassword?userId={user.Id}&" +
+                $"code={WebUtility.UrlEncode(token)}";
+
+            //Url.Action(nameof(ResetPassword), "AccountController", new { token, email = user.Email }, Request.Scheme);
+            var message = new Message(new string[] { forgotPasswordModel.Email }, "Reset password token",
+                $"Please reset password by clicking here: " +
+               $"<a href='{callbackUrl}'>Відновити</a>");
+            _emailSender.SendEmail(message);
+
+            return Ok();
+        }
+
+        [HttpPost("changePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.UserId);
+            var res = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            return Ok();
         }
     }
 }
