@@ -12,8 +12,10 @@ namespace OLX.Entities
         public EFDbContext(DbContextOptions<EFDbContext> options)
             : base(options)
         {
-
         }
+
+        public DbSet<AdvertisementEntity> Advertisement { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -32,7 +34,6 @@ namespace OLX.Entities
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
             });
-
         }
     }
 }

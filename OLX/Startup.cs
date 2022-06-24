@@ -18,6 +18,8 @@ using System.Text;
 using OLX.Models;
 using OLX.Abstract;
 using OLX.Services;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace OLX
 {
@@ -135,6 +137,16 @@ namespace OLX
             app.UseSwagger();
             app.UseSwaggerUI();
 
+            var dir = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(dir),
+                RequestPath = "/images"
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
