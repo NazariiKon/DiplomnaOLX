@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OLX.Entities;
 using OLX.Helpers;
+using OLX.Models;
 using OLX.ViewModels;
+using System;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -49,6 +51,51 @@ namespace OLX.Controllers
                     .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
                     .ToList();
             return Ok(list);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var adv = _context.Advertisement.FirstOrDefault(m => m.Id == id);
+            if (adv != null)
+            {
+                var img = Path.Combine(Directory.GetCurrentDirectory(), "uploads", adv.Image);
+                System.IO.File.Delete(img);
+                _context.Advertisement.Remove(adv);
+                _context.SaveChanges();
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditAdvertisementViewModel model)
+        {
+            var adv = _context.Advertisement.FirstOrDefault(item => item.Id == model.Id);
+
+            if (adv != null)
+            {
+                if (model.Image != null)
+                {
+                    var img = ImageWorker.FromBase64StringToImage(model.Image);
+                    string filename = adv.Image;
+                    var dir = Path.Combine(Directory.GetCurrentDirectory(), "uploads", filename);
+                    img.Save(dir, ImageFormat.Jpeg);
+                    //adv = _mapper.Map<AdvertisementEntity>(model); // мап моделі в оголошення
+                    adv.Image = filename;
+                }
+                adv.Name = model.Name;
+                adv.Price = Decimal.Parse(model.Price);
+                adv.Contacts = model.Contacts;
+                adv.Category = model.Category;
+                adv.Description = model.Description;
+                _context.SaveChanges();
+            }
+            return Ok(adv);
         }
     }
 }
