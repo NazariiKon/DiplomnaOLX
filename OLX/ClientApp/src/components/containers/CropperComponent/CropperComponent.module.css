@@ -1,0 +1,54 @@
+.modalBody {
+  /* height: 80vh; */
+  width: 100%;
+  position: relative;
+}
+
+.image {
+  margin: 0 auto;
+  max-height: 60%;
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+.image img {
+  display: block;
+  max-width: 100%;
+}
+
+.formGroup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 5px; */
+}
+
+.labelInput {
+  /* height: 5rem;
+    max-height: 10rem   */
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid silver;
+  border-radius: 10px;
+  /* padding: 10px; */
+  background: rgb(243, 242, 242);
+  transition: all 0.2s;
+}
+.labelInput:hover {
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.labelInput span {
+  color: silver;
+}
+
+.bgImg {
+  width: 100%;
+}
