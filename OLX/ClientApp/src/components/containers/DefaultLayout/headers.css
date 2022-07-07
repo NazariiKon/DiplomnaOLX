@@ -6,6 +6,7 @@
 .pad {
   padding-top: 5rem;
   background-color: #f7f7f6;
+  background: #ffffff;
 }
 
 .defaultPositions {
@@ -13,4 +14,12 @@
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
+}
+
+.position {
+  position: static;
+  width: 1512px;
+  height: 94px;
+  left: 0px;
+  top: 0px;
 }
