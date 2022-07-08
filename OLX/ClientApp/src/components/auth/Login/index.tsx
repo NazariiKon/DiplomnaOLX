@@ -8,12 +8,14 @@ import EclipseWidget from "../../common/eclipse";
 import { useFormik, Form, FormikProvider, FormikHelpers, ErrorMessage } from "formik";
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import logo from '../../../images/img_logo.png'
+import './style.css'
 
 const LoginPage: React.FC = () => {
 
-  const initialValues: ILogin = { email: "", password: "", invalid:"" };
+  const initialValues: ILogin = { email: "", password: "", invalid: "" };
   const [loading, setLoading] = useState<boolean>(false);
-  
+
   const { LoginUser } = useActions();
   const navigator = useNavigate();
 
@@ -37,39 +39,44 @@ const LoginPage: React.FC = () => {
         setFieldError("password", password[0]);
       }
       console.log(invalid.length);
-      
-      if (invalid !== undefined){
+
+      if (invalid !== undefined) {
         setFieldError("invalid", invalid[0]);
       }
     }
   };
-const formik = useFormik({
-  initialValues: initialValues,
-  validationSchema: LoginSchema,
-  onSubmit: onHandleSubmit,
-});
-const { errors, touched, handleChange, handleSubmit } = formik;
-  
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: LoginSchema,
+    onSubmit: onHandleSubmit,
+  });
+  const { errors, touched, handleChange, handleSubmit } = formik;
+
   return (
     <>
       <Helmet>
         <title>Вхід</title>
       </Helmet>
       <div className="row">
-        <div className="col-3"></div>
         <div className="col-6">
-          <h1 className="text-center mt-4">Вхід</h1>
+          <div className="text-center mt-4 mb-4">
+            <h1 className="welcome">Вітаємо вас</h1>
+            {/* <button >Увійти з Google</button> */}
+          </div>
+          <div className="strike mb-4">
+              <span className="text">Увійти з email</span>
+          </div>
           <FormikProvider value={formik}>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className="mx-5">
               {errors.invalid !== undefined && (
                 <div className="alert alert-danger text-center" role="alert">
                   <ErrorMessage name="invalid" />
                 </div>
               )}
 
+              <div className="mx-5 px-5">
               <InputGroup
                 field="email"
-                label="Email"
                 type="text"
                 error={errors.email}
                 touched={touched.email}
@@ -77,31 +84,35 @@ const { errors, touched, handleChange, handleSubmit } = formik;
               />
 
               <InputGroup
-                label="Пароль"
                 field="password"
                 type="password"
                 error={errors.password}
                 touched={touched.password}
                 onChange={handleChange}
               />
-              <div className="d-flex justify-content-between">
-                <Link to="/recoverPassword">Забув пароль?</Link>
-                <Link to="/register">Зареєструватися</Link>
+              </div>
+              <div className="d-flex justify-content-end px-4 mx-5 mb-4">
+                <Link to="/recoverPassword" className="text text-decoration-none">Забули пароль?</Link>
               </div>
 
               <div className="text-center">
                 <button
                   type="submit"
-                  className="btn btn-secondary px-5"
+                  className="btn submit btn-text mb-3"
                   disabled={loading}
                 >
-                  Вхід
+                  Увійти
                 </button>
+                <div className="d-flex justify-content-center px-4 mx-5 mb-4">
+                 <label className="text mx-1"> Немає акаунта?</label> <Link to="/register" className="text-1 text-decoration-none">Зареєструйтесь</Link>
+                </div>
               </div>
             </Form>
           </FormikProvider>
         </div>
-        <div className="col-3"></div>
+        <div className="col-6">
+          <img src={logo}></img>
+        </div>
       </div>
       {loading && <EclipseWidget />}
     </>

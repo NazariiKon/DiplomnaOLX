@@ -90,7 +90,6 @@ const RegisterPage = () => {
           <Form onSubmit={handleSubmit}>
             <InputGroup
               field="firstName"
-              label="Ім'я"
               error={errors.firstName}
               onChange={handleChange}
               touched={touched.firstName}
@@ -98,7 +97,6 @@ const RegisterPage = () => {
 
             <InputGroup
               field="secondName"
-              label="Прізвище"
               error={errors.secondName}
               onChange={handleChange}
               touched={touched.secondName}
@@ -106,7 +104,6 @@ const RegisterPage = () => {
 
             <InputGroup
               field="email"
-              label="Email"
               error={errors.email}
               onChange={handleChange}
               touched={touched.email}
@@ -114,7 +111,6 @@ const RegisterPage = () => {
 
             <InputGroup
               field="phone"
-              label="Телефон"
               error={errors.phone}
               onChange={handleChange}
               touched={touched.phone}
@@ -122,7 +118,6 @@ const RegisterPage = () => {
 
             <InputGroup
               field="password"
-              label="Пароль"
               type="password"
               error={errors.password}
               onChange={handleChange}
@@ -131,7 +126,6 @@ const RegisterPage = () => {
 
             <InputGroup
               field="confirmPassword"
-              label="Підтвердіть пароль"
               type="password"
               error={errors.confirmPassword}
               onChange={handleChange}
