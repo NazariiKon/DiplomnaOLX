@@ -9,6 +9,7 @@ import { useFormik, Form, FormikProvider, FormikHelpers, ErrorMessage } from "fo
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/img_logo.png'
+import google_auth from '../../../images/google_auth.png'
 import './style.css'
 
 const LoginPage: React.FC = () => {
@@ -61,10 +62,12 @@ const LoginPage: React.FC = () => {
         <div className="col-6">
           <div className="text-center mt-4 mb-4">
             <h1 className="welcome">Вітаємо вас</h1>
-            {/* <button >Увійти з Google</button> */}
+          </div>
+          <div className="text-center mb-4">
+            <a href="!#"><img src={google_auth}></img></a>
           </div>
           <div className="strike mb-4">
-              <span className="text">Увійти з email</span>
+            <span className="text">Увійти з email</span>
           </div>
           <FormikProvider value={formik}>
             <Form onSubmit={handleSubmit} className="mx-5">
@@ -75,36 +78,38 @@ const LoginPage: React.FC = () => {
               )}
 
               <div className="mx-5 px-5">
-              <InputGroup
-                field="email"
-                type="text"
-                error={errors.email}
-                touched={touched.email}
-                onChange={handleChange}
-              />
+                <InputGroup
+                  placeholder="Ваш Email"
+                  field="email"
+                  type="text"
+                  error={errors.email}
+                  touched={touched.email}
+                  onChange={handleChange}
+                />
 
-              <InputGroup
-                field="password"
-                type="password"
-                error={errors.password}
-                touched={touched.password}
-                onChange={handleChange}
-              />
+                <InputGroup
+                  placeholder="Ваш пароль"
+                  field="password"
+                  type="password"
+                  error={errors.password}
+                  touched={touched.password}
+                  onChange={handleChange}
+                />
               </div>
-              <div className="d-flex justify-content-end px-4 mx-5 mb-4">
+              <div className="d-flex justify-content-end px-4 mx-5 mb-5">
                 <Link to="/recoverPassword" className="text text-decoration-none">Забули пароль?</Link>
               </div>
 
               <div className="text-center">
                 <button
                   type="submit"
-                  className="btn submit btn-text mb-3"
+                  className="btn submit btn-text mb-4"
                   disabled={loading}
                 >
                   Увійти
                 </button>
                 <div className="d-flex justify-content-center px-4 mx-5 mb-4">
-                 <label className="text mx-1"> Немає акаунта?</label> <Link to="/register" className="text-1 text-decoration-none">Зареєструйтесь</Link>
+                  <label className="text mx-1"> Немає акаунта?</label> <Link to="/register" className="text-1 text-decoration-none">Зареєструйтесь</Link>
                 </div>
               </div>
             </Form>

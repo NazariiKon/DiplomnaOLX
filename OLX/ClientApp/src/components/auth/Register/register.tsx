@@ -10,6 +10,8 @@ import { Helmet } from "react-helmet";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import CropperComponent from "../../containers/CropperComponent/CropperComponent";
 import "../Register/register.css"
+import logo from '../../../images/img_logo.png'
+import google_auth from '../../../images/google_auth.png'
 
 const RegisterPage = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -18,13 +20,13 @@ const RegisterPage = () => {
   // const { RegisterUser } = useActions();
   const navigator = useNavigate();
   const initialValues: IRegister = {
-    firstName: "",
-    secondName: "",
+    firstName: "name",
+    secondName: "sec",
     email: "",
-    photo: "",
-    phone: "",
+    photo: "sec",
+    phone: "123123123123",
     password: "",
-    confirmPassword: "",
+    confirmPassword: "Zxczxc",
   };
 
   const onHandleSubmit = async (
@@ -67,83 +69,61 @@ const RegisterPage = () => {
       <Helmet>
         <title>Реєстрація</title>
       </Helmet>
-      <h1 className="text-center mt-4">Реєстрація</h1>
+      <div className="row">
+        <div className="col-6">
+          <div className="text-center mt-4 mb-4">
+            <h1 className="welcome">Реєстрація</h1>
+          </div>
+          <div className="text-center mb-4">
+            <a href="!#"><img src={google_auth}></img></a>
+          </div>
+          <div className="strike mb-4">
+            <span className="text">Зареєструватись з email</span>
+          </div>
+          <FormikProvider value={formik}>
+          <Form onSubmit={handleSubmit} className="mx-5">
+              <div className="mx-5 px-5">
+                <InputGroup
+                  placeholder="Ваш Email"
+                  field="email"
+                  type="text"
+                  error={errors.email}
+                  touched={touched.email}
+                  onChange={handleChange}
+                />
 
-      <div className="col-3">
-        <div className="height_cropper">
-          <CropperComponent
-            aspectRatio={4/4}
-            field="photo"
-            error={errors.photo}
-            onChange={setFieldValue}
-            touched={touched.photo}
-          />
+                <InputGroup
+                  placeholder="Ваш пароль"
+                  field="password"
+                  type="password"
+                  error={errors.password}
+                  touched={touched.password}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="custom-control custom-checkbox mx-5 px-5 mb-4">
+                    <input type="checkbox" className="custom-control-input mx-2"></input>
+                    <label className="custom-control-label check"> * Я погоджуюсь із правилами користування</label>
+                    <label className="mx-4 check">сервісом, а також з передачею та обробкою моїх даних в all in.ua. Я підтверджую своє повноліття та відповідальність за розміщення оголошення.</label>
+                </div>
+                
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="btn submit btn-text mb-4"
+                  disabled={loading}
+                >
+                  Зареєструватись
+                </button>
+              </div>
+            </Form>
+          </FormikProvider>
+        </div>
+        <div className="col-6">
+          <img src={logo}></img>
         </div>
       </div>
-      <div className="col-6 mb-4">
-        {bot && (
-          <div className="alert alert-dismissible alert-danger">
-            <strong>Ви Бот</strong>
-          </div>
-        )}
-        <FormikProvider value={formik}>
-          <Form onSubmit={handleSubmit}>
-            <InputGroup
-              field="firstName"
-              error={errors.firstName}
-              onChange={handleChange}
-              touched={touched.firstName}
-            />
-
-            <InputGroup
-              field="secondName"
-              error={errors.secondName}
-              onChange={handleChange}
-              touched={touched.secondName}
-            />
-
-            <InputGroup
-              field="email"
-              error={errors.email}
-              onChange={handleChange}
-              touched={touched.email}
-            />
-
-            <InputGroup
-              field="phone"
-              error={errors.phone}
-              onChange={handleChange}
-              touched={touched.phone}
-            />
-
-            <InputGroup
-              field="password"
-              type="password"
-              error={errors.password}
-              onChange={handleChange}
-              touched={touched.password}
-            />
-
-            <InputGroup
-              field="confirmPassword"
-              type="password"
-              error={errors.confirmPassword}
-              onChange={handleChange}
-              touched={touched.confirmPassword}
-            />
-            <div className="text-center">
-              <button
-                type="submit"
-                className="btn btn-secondary"
-                disabled={loading}
-              >
-                Реєстрація
-              </button>
-            </div>
-          </Form>
-        </FormikProvider>
-      </div>
-      <div className="col-3"></div>
       {loading && <EclipseWidget />}
     </div>
   );

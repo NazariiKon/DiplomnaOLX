@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import './style.css'
 
 interface InputGroupProps extends InputHTMLAttributes<HTMLInputElement> {
+  placeholder: string,
   field: string,
   touched?: boolean | null,
   error?: string | null,
@@ -12,6 +13,7 @@ interface InputGroupProps extends InputHTMLAttributes<HTMLInputElement> {
 
 
 const InputGroup: FC<InputGroupProps> = ({
+  placeholder,
   field,
   touched = null,
   error = null,
@@ -23,6 +25,7 @@ const InputGroup: FC<InputGroupProps> = ({
   return (
     <div className="mb-3">
       <input
+        placeholder={placeholder}
         type={type}
         name={field}
         className={classNames(
