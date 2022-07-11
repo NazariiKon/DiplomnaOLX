@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -30,7 +31,71 @@ const HomePage = () => {
                   aria-labelledby="panelsStayOpen-headingOne"
                 >
                   <div className="accordion-body">
-                    Підгрупи розділу
+                    <ul className="nav flex-column">
+                    <li className="nav-item">
+                        <a
+                          className="nav-link active"
+                          aria-current="page"
+                          href="#"
+                        >
+                          Робота
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a
+                          className="nav-link active"
+                          aria-current="page"
+                          href="#"
+                        >
+                          Тварини
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Авто
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Нерухомість
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Електроніка
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Мода і стиль
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Хоббі, відпочинок і спорт
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Бізнес та послуги
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link" href="#">
+                          Дитячий світ
+                        </a>
+                      </li>
+                    </ul>
+
+                    {/* <Link to="/">Робота</Link>
+                  <Link to="/">Тварини</Link>
+                  <Link to="/">Авто</Link>
+                  <Link to="/">Нерухомість</Link>
+                  <Link to="/">Електроніка</Link>
+                  <Link to="/">Мода і стиль</Link>
+                  <Link to="/">Хоббі, відпочинок і спорт</Link>
+                  <Link to="/">Бізнес та послуги</Link>
+                  <Link to="/">Дитячий світ</Link> */}
                   </div>
                 </div>
               </div>
@@ -52,13 +117,14 @@ const HomePage = () => {
                   className="accordion-collapse collapse"
                   aria-labelledby="panelsStayOpen-headingTwo"
                 >
-                  <div className="accordion-body">
-                  Підгрупи розділу
-                  </div>
+                  <div className="accordion-body">Підгрупи розділу</div>
                 </div>
               </div>
               <div className="accordion-item">
-                <h2 className="accordion-header" id="panelsStayOpen-headingThree">
+                <h2
+                  className="accordion-header"
+                  id="panelsStayOpen-headingThree"
+                >
                   <button
                     className="accordion-button collapsed"
                     type="button"
@@ -75,13 +141,14 @@ const HomePage = () => {
                   className="accordion-collapse collapse"
                   aria-labelledby="panelsStayOpen-headingThree"
                 >
-                  <div className="accordion-body">
-                  Підгрупи розділу
-                  </div>
+                  <div className="accordion-body">Підгрупи розділу</div>
                 </div>
               </div>
               <div className="accordion-item">
-                <h2 className="accordion-header" id="panelsStayOpen-headingFour">
+                <h2
+                  className="accordion-header"
+                  id="panelsStayOpen-headingFour"
+                >
                   <button
                     className="accordion-button collapsed"
                     type="button"
@@ -90,7 +157,7 @@ const HomePage = () => {
                     aria-expanded="false"
                     aria-controls="panelsStayOpen-collapseFour"
                   >
-                   Стан
+                    Стан
                   </button>
                 </h2>
                 <div
@@ -98,13 +165,14 @@ const HomePage = () => {
                   className="accordion-collapse collapse"
                   aria-labelledby="panelsStayOpen-headingFour"
                 >
-                  <div className="accordion-body">
-                  Підгрупи розділу
-                  </div>
+                  <div className="accordion-body">Підгрупи розділу</div>
                 </div>
               </div>
               <div className="accordion-item">
-                <h2 className="accordion-header" id="panelsStayOpen-headingFive">
+                <h2
+                  className="accordion-header"
+                  id="panelsStayOpen-headingFive"
+                >
                   <button
                     className="accordion-button collapsed"
                     type="button"
@@ -113,7 +181,7 @@ const HomePage = () => {
                     aria-expanded="false"
                     aria-controls="panelsStayOpen-collapseFive"
                   >
-                   Колір
+                    Колір
                   </button>
                 </h2>
                 <div
@@ -121,9 +189,7 @@ const HomePage = () => {
                   className="accordion-collapse collapse"
                   aria-labelledby="panelsStayOpen-headingFive"
                 >
-                  <div className="accordion-body">
-                  Підгрупи розділу
-                  </div>
+                  <div className="accordion-body">Підгрупи розділу</div>
                 </div>
               </div>
             </div>

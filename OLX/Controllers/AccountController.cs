@@ -59,7 +59,12 @@ namespace WebLoginAndRegister.Controllers
 
             if (!result.Succeeded)
             {
-                return BadRequest(new { invalid = "Не правильно введені дані!" });
+                return BadRequest(
+                    new
+                    {
+                        status = 400,
+                        errors = new { invalid = "Не правильно введені дані!" }
+                    });
             }
 
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -78,7 +83,13 @@ namespace WebLoginAndRegister.Controllers
             if (!ModelState.IsValid)
             {
                 var errors = CustomValidator.GetErrorsByModel(ModelState);
-                return BadRequest(errors);
+                //return BadRequest(errors);
+                return BadRequest(
+                    new
+                    {
+                        status = 400,
+                        errors = new { password = "Пароль має містити цифри, маленькі і великі латинські букви!" }
+                    });
             }
 
             var user = new DbUser
@@ -90,18 +101,22 @@ namespace WebLoginAndRegister.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
-                return BadRequest(result.Errors);
+                //return BadRequest(result.Errors);
+                return BadRequest(
+                    new
+                    {
+                        status = 400,
+                        errors = new { password = "Такий користувач вже існує" }
+                    });
             }
-            
-            return Ok("registered");
 
-            //await _signInManager.SignInAsync(user, isPersistent: false);
+            await _signInManager.SignInAsync(user, isPersistent: false);
 
-            //return Ok(
-            //new
-            //{
-            //    token = CreateTokenJwt(user)
-            //});
+            return Ok(
+            new
+            {
+                token = CreateTokenJwt(user)
+            });
         }
 
         [Route("all")]

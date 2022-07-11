@@ -16,7 +16,7 @@ const LoginPage: React.FC = () => {
 
   const initialValues: ILogin = { email: "", password: "", invalid: "" };
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [invalid, setInvalid] = useState<string>("");
   const { LoginUser } = useActions();
   const navigator = useNavigate();
 
@@ -31,19 +31,13 @@ const LoginPage: React.FC = () => {
       setLoading(false);
     } catch (errors) {
       setLoading(false);
+      console.log("error", errors);
       const serverErrors = errors as ILoginError;
-      const { password, invalid } = serverErrors;
-      console.log("passwword", password);
-      console.log("invalid", invalid);
-
-      if (password !== undefined) {
-        setFieldError("password", password[0]);
-      }
-      console.log(invalid.length);
-
-      if (invalid !== undefined) {
-        setFieldError("invalid", invalid[0]);
-      }
+      const { invalid } = serverErrors;
+      setInvalid(invalid);
+  
+      // console.log("err", errors);
+      // console.log("invalid", invalid);
     }
   };
   const formik = useFormik({
@@ -52,50 +46,47 @@ const LoginPage: React.FC = () => {
     onSubmit: onHandleSubmit,
   });
   const { errors, touched, handleChange, handleSubmit } = formik;
-
   return (
     <>
       <Helmet>
         <title>Вхід</title>
       </Helmet>
       <div className="row">
-        <div className="col-6">
+        <div className="col-5">
           <div className="text-center mt-4 mb-4">
             <h1 className="welcome">Вітаємо вас</h1>
           </div>
-          <div className="text-center mb-4">
-            <a href="!#"><img src={google_auth}></img></a>
+          <div className="text-center mb-4 ">
+            <a href="!#"><img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img></a>
           </div>
           <div className="strike mb-4">
             <span className="text">Увійти з email</span>
           </div>
           <FormikProvider value={formik}>
-            <Form onSubmit={handleSubmit} className="mx-5">
-              {errors.invalid !== undefined && (
+            <Form onSubmit={handleSubmit}>
+              {invalid && (
                 <div className="alert alert-danger text-center" role="alert">
-                  <ErrorMessage name="invalid" />
+                  {invalid}
                 </div>
               )}
 
-              <div className="mx-5 px-5">
-                <InputGroup
-                  placeholder="Ваш Email"
-                  field="email"
-                  type="text"
-                  error={errors.email}
-                  touched={touched.email}
-                  onChange={handleChange}
-                />
+              <InputGroup
+                placeholder="Ваш Email"
+                field="email"
+                type="text"
+                error={errors.email}
+                touched={touched.email}
+                onChange={handleChange}
+              />
 
-                <InputGroup
-                  placeholder="Ваш пароль"
-                  field="password"
-                  type="password"
-                  error={errors.password}
-                  touched={touched.password}
-                  onChange={handleChange}
-                />
-              </div>
+              <InputGroup
+                placeholder="Ваш пароль"
+                field="password"
+                type="password"
+                error={errors.password}
+                touched={touched.password}
+                onChange={handleChange}
+              />
               <div className="d-flex justify-content-end px-4 mx-5 mb-5">
                 <Link to="/recoverPassword" className="text text-decoration-none">Забули пароль?</Link>
               </div>
@@ -115,8 +106,8 @@ const LoginPage: React.FC = () => {
             </Form>
           </FormikProvider>
         </div>
-        <div className="col-6">
-          <img src={logo}></img>
+        <div className="col-7 align-self-center">
+          <img className="col-12 col-lg-10 col-md-12 col-sm-12 col-xl-10" src={logo}></img>
         </div>
       </div>
       {loading && <EclipseWidget />}

@@ -8,12 +8,6 @@ import CartIcon from "./CartIcon";
 import classes from "./HeaderCartButton.module.css";
 
 const HeaderCartButton: React.FC = () => {
-  
-  
-
-  
-  
-    
   return (
     <button
       className={classes.button}

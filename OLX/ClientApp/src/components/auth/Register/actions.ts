@@ -10,6 +10,7 @@ export const RegisterUser = (data: IRequest) => {
     try {
       const response = await http.post("api/account/register", data);
       const token = await response.data.token;
+      
       dispatch({
         type: RegisterActionTypes.REGISTER_SUCCESS,
         payload: token,
@@ -27,5 +28,4 @@ export const RegisterUser = (data: IRequest) => {
     }
   };
 };
-
 
