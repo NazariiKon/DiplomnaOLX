@@ -41,13 +41,13 @@ export type AuthAction =
 export interface ILogin {
   email: string;
   password: string;
-  invalid:string
+  invalid: string;
 }
 
 export interface ILoginError {
   password: Array<string>;
   email: Array<string>;
-  invalid: Array<string>;
+  invalid: string;
 }
 
 export interface ILoginErrors {

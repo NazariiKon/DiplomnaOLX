@@ -25,28 +25,21 @@ export type RegisterAction =
 
 
 export interface IRegister {
-  firstName?: string;
-  secondName?: string;
   email?: string;
-  photo?: string;
-  phone?: string;
   password?: string;
-  confirmPassword?: string;
+  // confirmPassword?: string;
 }
 
 export interface IRequest extends IRegister {
   RecaptchaToken: string;
 }
 
-export type RegisterError = {
-  email: Array<string>, 
-  password: Array<string>, 
-  confirmPassword: Array<string>, 
+export interface RegisterError {
+  password: string,
+  email: string
 };
 
-export type RegisterErrors = {
+export interface RegisterErrors {
   errors: RegisterError,
-  status: number, 
+  status: number
 };
-
-
