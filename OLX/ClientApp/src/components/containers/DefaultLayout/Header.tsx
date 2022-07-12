@@ -13,6 +13,16 @@ import HeaderSearch from "../../common/HeaderSearch/HeaderSearch";
 import { v4 as uuid } from "uuid";
 
 import "./headers.css";
+import logo from "../../../images/logo.png";
+import house from "../../../images/icon/house.png";
+import shop from "../../../images/icon/shop.png";
+import per from "../../../images/icon/per.png";
+import prof from "../../../images/icon/prof.png";
+import h from "../../../images/icon/h.png";
+import ukr from "../../../images/icon/ukr.png";
+import eng from "../../../images/icon/eng.png";
+import bels from "../../../images/icon/bels.png";
+import settings from "../../../images/icon/settings.png";
 
 const DefaultHeader = () => {
   const { isAuth } = useTypedSelector((store) => store.auth);
@@ -22,75 +32,55 @@ const DefaultHeader = () => {
   const { LogoutUser } = useActions();
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top rounded-3 border border-warning">
+    <nav className="navbar navbar-expand-lg rounded-3 border border-warning ">
       <div className="container">
-        <div className="grid">
-          <div className="row">
-            <div className="col-2">
-              <div className="container">
-                <Link className="navbar-brand" to="/">
-                  all in
-                </Link>
-              </div>
-            </div>
-            <div className="col-6">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/house">
-                    House
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/shop">
-                    Shop
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/per">
-                    Per
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/prof">
-                    Prof
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/like">
-                    Like
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="col-3">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    Українська
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Англійська
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="col-1">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/register">
-                    Реєстрація
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Вхід
-                  </Link>
-                </li>
-              </ul>
-            </div>
+        <div className="d-grid gap-2 d-md-block">
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              <img className="heder-logo" src={logo}></img>
+            </Link>
           </div>
+        </div>
+        <div className="d-grid gap-2 mx-auto ">
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              <img className="heder-logo " src={house}></img>
+            </Link>
+
+            <Link className="navbar-brand" to="/shop">
+              <img className="heder-logo2" src={shop}></img>
+            </Link>
+
+            <Link className="navbar-brand" to="/per">
+              <img className="heder-logo2" src={per}></img>
+            </Link>
+
+            <Link className="navbar-brand" to="/login">
+              <img className="heder-logo2" src={prof}></img>
+            </Link>
+
+            <Link className="navbar-brand" to="/like">
+              <img className="heder-logo2" src={h}></img>
+            </Link>
+          </div>
+        </div>
+        <div className="d-grid gap-2 mx-auto">
+          <div className="container nav-brand">
+            <Link className="navbar-brand" to="/#">
+              <img src={ukr}></img>
+            </Link>
+            <Link className="navbar-brand" to="/#">
+              <img src={eng}></img>
+            </Link>
+          </div>
+        </div>
+        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <Link className="nav-link" to="/register">
+            <img className="heder-logo" src={bels}></img>
+          </Link>
+          <Link className="nav-link" to="/login">
+            <img className="heder-logo" src={settings}></img>
+          </Link>
         </div>
       </div>
     </nav>

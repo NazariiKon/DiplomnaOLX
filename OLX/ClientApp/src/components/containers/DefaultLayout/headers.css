@@ -4,7 +4,7 @@
 }
 
 .pad {
-  padding-top: 5rem;
+  padding-top: 10px;
   background-color: #f7f7f6;
   background: #ffffff;
 }
@@ -22,4 +22,24 @@
   height: 94px;
   left: 0px;
   top: 0px;
+}
+.defaultPositions2{
+  position: absolute;
+}
+
+.heder-logo {
+  max-height: 60px;  
+}
+
+.heder-logo2 {
+ 
+  max-height: 30px;
+  margin-left: 50px;
+ 
+}
+
+.heder-baton{
+  position: static;
+  max-height: 30px;
+  
 }
