@@ -1,0 +1,161 @@
+.welcome {
+  /* position: absolute;
+    width: 418px;
+    height: 30px;
+    left: 241px;
+    top: 236px; */
+
+  /* text */
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 49px;
+  /* display: flex;
+    align-items: center;
+    text-align: center; */
+
+  color: #000000;
+}
+
+.strike {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.strike > span {
+  position: relative;
+  display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9999px;
+  height: 1px;
+  background: #474746;
+}
+
+.strike > span:before {
+  right: 100%;
+  margin-right: 60px;
+}
+
+.strike > span:after {
+  left: 100%;
+  margin-left: 60px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Nunito%20Sans");
+
+.text {
+  /* Nunito Sans */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* dark gray */
+
+  color: #474746;
+}
+
+.text-1 {
+  /* Nunito Sans */
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* dark gray */
+
+  color: #97681d;
+}
+
+.submit {
+  width: 65%;
+  height: 55px;
+  background: #f0ab3b;
+  border-radius: 20px;
+}
+
+.btn-text {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+
+  /* srm_color */
+
+  color: #ffffff;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-icon {
+  padding: auto;
+  margin: 20px;
+  max-width: 50px;
+  
+}
+.text-menu{
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: #474746;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.kategory {
+  margin-top: 15px;
+  width: 300px;
+  padding-left: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 10px;
+  display: flex;
+  align-items: center;
+  color: #474746;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.icon-menu{
+  margin-right: 10px;
+}
+
+.shearch{
+  border-radius: 30px;
+  border: 20px;
+  
+}
+
+.baner{
+  margin-top: 10px;
+  max-width: 100%;
+
+}
