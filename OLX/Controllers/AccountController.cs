@@ -17,8 +17,12 @@ using Microsoft.AspNetCore.Authorization;
 using OLX.Models;
 using System.Net;
 using OLX.Abstract;
+using OLX.Interfaces;
+using OLX.DTO.Account;
+using Microsoft.Extensions.Options;
+using Google.Apis.Auth;
 
-namespace WebLoginAndRegister.Controllers
+namespace OLX.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
@@ -30,10 +34,12 @@ namespace WebLoginAndRegister.Controllers
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
+        private readonly IOptions<GoogleAuthSettings> _googleAuthSettings;
 
         public AccountController(EFDbContext context,
          UserManager<DbUser> userManager,
          SignInManager<DbUser> signInManager,
+         IOptions<GoogleAuthSettings> googleAuthSettings,
          IConfiguration configuration, IMapper mapper, IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -42,6 +48,7 @@ namespace WebLoginAndRegister.Controllers
             _configuration = configuration;
             _mapper = mapper;
             _emailSender = emailSender;
+            _googleAuthSettings = googleAuthSettings;
         }
 
         [HttpPost("login")]
@@ -50,7 +57,12 @@ namespace WebLoginAndRegister.Controllers
             if (!ModelState.IsValid)
             {
                 var errors = CustomValidator.GetErrorsByModel(ModelState);
-                return BadRequest(errors);
+                return BadRequest(
+                   new
+                   {
+                       status = 400,
+                       errors = new { invalid = "Щось пішло не так!" }
+                   });
             }
 
             var result = await _signInManager
@@ -119,6 +131,62 @@ namespace WebLoginAndRegister.Controllers
             });
         }
 
+        [HttpPost("GoogleExternalLogin")]
+        public async Task<IActionResult> GoogleExternalLoginAsync([FromBody] ExternalLoginDTO request)
+        {
+            var payload = await VerifyGoogleToken(request);
+            if (payload == null)
+            {
+                return BadRequest(new
+                {
+                    error = "Щось пішло не так!"
+                });
+            }
+            var info = new UserLoginInfo(request.Provider, payload.Subject, request.Provider);
+            var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+
+            if (user == null)
+            {
+                user = await _userManager.FindByEmailAsync(payload.Email);
+
+                if (user == null)
+                {
+                    user = new DbUser
+                    {
+                        Email = payload.Email,
+                        UserName = payload.Email
+                    };
+                    var resultCreate = await _userManager.CreateAsync(user);
+                    if (!resultCreate.Succeeded)
+                    {
+                        return BadRequest(new { error = "Щось пішло не так!" });
+                    }
+                }
+
+                //var resultAddLogin = await _userManager.AddLoginAsync(user, info);
+                //if (!resultAddLogin.Succeeded)
+                //{
+                //    return BadRequest(new { error = "Щось пішло не так!" });
+                //}
+            }
+
+            string token = CreateTokenJwt(user);
+            return Ok(
+                new { token }
+            );
+        }
+
+        private async Task<GoogleJsonWebSignature.Payload> VerifyGoogleToken(ExternalLoginDTO request)
+        {
+            var settings = new GoogleJsonWebSignature.ValidationSettings()
+            {
+                Audience = new List<string>() { _googleAuthSettings.Value.ClientId }
+            };
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(request.Token, settings);
+            return payload;
+        }
+
         [Route("all")]
         [HttpGet]
         public IActionResult GetUsers()
@@ -128,7 +196,6 @@ namespace WebLoginAndRegister.Controllers
                 .ToList();
             return Ok(list);
         }
-
 
         private string CreateTokenJwt(DbUser user)
         {

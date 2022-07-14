@@ -20,6 +20,7 @@ using OLX.Abstract;
 using OLX.Services;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using OLX.Helpers;
 
 namespace OLX
 {
@@ -82,6 +83,8 @@ namespace OLX
 
             services.AddControllersWithViews();
             services.AddSwaggerGen();
+            services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
+            services.Configure<GoogleAuthSettings>(Configuration.GetSection("GoogleAuthSettings"));
             services.AddSwaggerGen(option =>
             {
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });

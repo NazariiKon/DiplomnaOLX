@@ -10,6 +10,9 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import logo from '../../../images/img_logo.png'
 import google_auth from '../../../images/google_auth.png'
+import { gapi } from 'gapi-script';
+import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
+import { useEffect } from 'react';
 import './style.css'
 
 const LoginPage: React.FC = () => {
@@ -17,8 +20,28 @@ const LoginPage: React.FC = () => {
   const initialValues: ILogin = { email: "", password: "", invalid: "" };
   const [loading, setLoading] = useState<boolean>(false);
   const [invalid, setInvalid] = useState<string>("");
-  const { LoginUser } = useActions();
+  const { LoginUser, responseGoogle } = useActions();
   const navigator = useNavigate();
+
+  useEffect(() => {
+    //console.log("Hello", process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID);
+    const start = () => {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID,
+        scope: ''
+      });
+    }
+    gapi.load('client:auth2', start);
+  }, []);
+
+  const loginGoogle = async (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    const model = {
+      provider: "Google",
+      token: (response as GoogleLoginResponse).tokenId
+    };
+    await responseGoogle(model);
+    await navigator("/");
+  }
 
   const onHandleSubmit = async (
     values: ILogin,
@@ -35,16 +58,18 @@ const LoginPage: React.FC = () => {
       const serverErrors = errors as ILoginError;
       const { invalid } = serverErrors;
       setInvalid(invalid);
-  
+
       // console.log("err", errors);
       // console.log("invalid", invalid);
     }
   };
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: LoginSchema,
     onSubmit: onHandleSubmit,
   });
+  
   const { errors, touched, handleChange, handleSubmit } = formik;
   return (
     <>
@@ -57,7 +82,18 @@ const LoginPage: React.FC = () => {
             <h1 className="welcome">Вітаємо вас</h1>
           </div>
           <div className="text-center mb-4 ">
-            <a href="!#"><img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img></a>
+            <GoogleLogin
+              render={(renderProps) => (
+                <a onClick={renderProps.onClick} >
+                  <img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img>
+                </a>
+              )}
+              clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string}
+              onSuccess={loginGoogle}
+              onFailure={loginGoogle}
+              cookiePolicy={'https://localhost:44334'}
+            >
+            </GoogleLogin>
           </div>
           <div className="strike mb-4">
             <span className="text">Увійти з email</span>

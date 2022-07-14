@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputGroup from "../../common/InputGroup";
 import { useActions } from "../../../hooks/useActions";
 import { useNavigate } from "react-router";
@@ -12,18 +12,41 @@ import CropperComponent from "../../containers/CropperComponent/CropperComponent
 import "../Register/register.css"
 import logo from '../../../images/img_logo.png'
 import google_auth from '../../../images/google_auth.png'
+import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
+import { gapi } from "gapi-script";
 
 const RegisterPage = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [bot, setBot] = useState<boolean>();
   const [loading, setLoading] = useState<boolean>(false);
-  const { RegisterUser } = useActions();
+  const { RegisterUser, responseGoogle} = useActions();
   const navigator = useNavigate();
   const [password, setInvalid] = useState<string>("");
   const initialValues: IRegister = {
     email: "",
     password: ""
   };
+
+  useEffect(() => {
+    //console.log("Hello", process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID);
+    const start = () => {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID,
+        scope: ''
+      });
+    }
+    gapi.load('client:auth2', start);
+  }, []);
+
+  const loginGoogle = async (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    const model = {
+      provider: "Google",
+      token: (response as GoogleLoginResponse).tokenId
+    };
+    await responseGoogle(model);
+    await navigator("/");
+  }
+
 
   const onHandleSubmit = async (
     values: IRegister,
@@ -72,7 +95,18 @@ const RegisterPage = () => {
             <h1 className="welcome">Реєстрація</h1>
           </div>
           <div className="text-center mb-4 ">
-            <a href="!#"><img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img></a>
+            <GoogleLogin
+              render={(renderProps) => (
+                <a onClick={renderProps.onClick} >
+                  <img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img>
+                </a>
+              )}
+              clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string}
+              onSuccess={loginGoogle}
+              onFailure={loginGoogle}
+              cookiePolicy={'https://localhost:44334'}
+            >
+            </GoogleLogin>
           </div>
           <div className="strike mb-4">
             <span className="text">Зареєструватись з email</span>
