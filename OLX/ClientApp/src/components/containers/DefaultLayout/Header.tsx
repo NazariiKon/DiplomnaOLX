@@ -32,7 +32,7 @@ const DefaultHeader = () => {
   const { LogoutUser } = useActions();
 
   return (
-    <nav className="navbar navbar-expand-lg rounded-3 border border-warning ">
+    <nav className="navbar navbar-expand-sm rounded-3 border border-warning ">
       <div className="container">
         <div className="d-grid gap-2 d-md-block">
           <div className="container">
@@ -40,6 +40,18 @@ const DefaultHeader = () => {
               <img className="heder-logo" src={logo}></img>
             </Link>
           </div>
+          {/* <div>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="navbarContent"
+              aria-controls="navbarContent"
+              aria-expanded="false"
+            >
+                <span className="navbar-toggler-icon"></span>
+            </button>
+          </div> */}
         </div>
         <div className="d-grid gap-2 mx-auto ">
           <div className="container">
