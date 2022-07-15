@@ -215,3 +215,8 @@
   align-items: self-position;
   text-align: match-parent ;
 }
+
+.card-image {
+  width: 320px;
+  height: 221px;
+}

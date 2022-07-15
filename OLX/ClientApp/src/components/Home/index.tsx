@@ -16,9 +16,26 @@ import card from "../../images/ph2.png";
 import card_plas from "../../images/icon/plas_to.png";
 import card_h from "../../images/icon/h_to.png";
 import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 //import "./iconstyle.css";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  //  const {list} = useSelector(state => state.adv);
+  const { list } = useTypedSelector((store) => store.adv);
+  const { AdvAll } = useActions();
+  useEffect(() => {
+    try {
+      AdvAll();
+    }
+    catch (error) {
+      console.log("Server error global");
+    }
+  }, [])
+
   return (
     <>
       <Helmet>
@@ -296,34 +313,36 @@ const HomePage = () => {
                     <img className="baner" src={logo} alt="baner"></img>
                   </a>
                   <div className="text_karesel">VIP-оголошення</div>
-
-                  <div className="card">
                   <div className="row">
-                    <img src={card} className="card-img-top" alt="photo" />
-                    <div className="card-body col">
-                      </div>
-                      <div className="row">
-                      <div className=" col-9">
-                      <h5 className="card-title">Назва</h5>
-                      <p className="card-text">
-                         опис товару
-                      </p>
-                      <p className="card-text2">
-                         300 грн
-                      </p>
-                      </div>
-                      <div className=" col-3 ">
-                      <a href="#" className="btn " >
-                      <img src={card_plas} alt="+"></img>
-                      </a>
-                      <a href="#" className="btn ">
-                      <img src={card_h} alt="like"></img>
-                      </a></div></div>
-                    </div>
+                    {
+                      list.map((adv: any, index: any) => {
+                        return (
+                          <div className="card col-4">
+                            <div className="row">
+                              <img className="card-image" src={"https://localhost:44334/images/" + adv.image} />
+                              {/* <img src={card} className="card-img-top" alt="photo" /> */}
+                              <div className="card-body col">
+                              </div>
+                              <div className="row">
+                                <div className=" col-9">
+                                  <h5 className="card-title">{adv.name}</h5>
+                                  <p className="card-text">{adv.description}</p>
+                                  <p className="card-text2">{adv.price}</p>
+                                </div>
+                                <div className=" col-3 ">
+                                  <a href="#" className="btn " >
+                                    <img src={card_plas} alt="+"></img>
+                                  </a>
+                                  <a href="#" className="btn ">
+                                    <img src={card_h} alt="like"></img>
+                                  </a></div></div>
+                            </div>
+                          </div>
+
+                        );
+                      })
+                    }
                   </div>
-
-                  
-
                 </div>
               </div>
             </div>
