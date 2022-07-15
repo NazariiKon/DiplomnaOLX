@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import "bootstrap";
 import logo from "../../images/logoo.png";
 import works from "../../images/icon/works.png";
@@ -11,7 +12,9 @@ import shirt from "../../images/icon/t_shirt.png";
 import coffee from "../../images/icon/coffee.png";
 import ring from "../../images/icon/ring.png";
 import pazle from "../../images/icon/pazle.png";
-//import line from "../../images/icon/line_menu.png";
+import card from "../../images/ph2.png";
+import card_plas from "../../images/icon/plas_to.png";
+import card_h from "../../images/icon/h_to.png";
 import "./style.css";
 //import "./iconstyle.css";
 
@@ -292,6 +295,35 @@ const HomePage = () => {
                   <a href="/register">
                     <img className="baner" src={logo} alt="baner"></img>
                   </a>
+                  <div className="text_karesel">VIP-оголошення</div>
+
+                  <div className="card">
+                  <div className="row">
+                    <img src={card} className="card-img-top" alt="photo" />
+                    <div className="card-body col">
+                      </div>
+                      <div className="row">
+                      <div className=" col-9">
+                      <h5 className="card-title">Назва</h5>
+                      <p className="card-text">
+                         опис товару
+                      </p>
+                      <p className="card-text2">
+                         300 грн
+                      </p>
+                      </div>
+                      <div className=" col-3 ">
+                      <a href="#" className="btn " >
+                      <img src={card_plas} alt="+"></img>
+                      </a>
+                      <a href="#" className="btn ">
+                      <img src={card_h} alt="like"></img>
+                      </a></div></div>
+                    </div>
+                  </div>
+
+                  
+
                 </div>
               </div>
             </div>
