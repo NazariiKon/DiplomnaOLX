@@ -143,7 +143,7 @@ const LoginPage: React.FC = () => {
           </FormikProvider>
         </div>
         <div className="col-7 align-self-center">
-          <img className="col-12 col-lg-10 col-md-12 col-sm-12 col-xl-10" src={logo}></img>
+          <img className="col-12 col-lg-10 col-md-12 col-sm-12 col-xl-9" src={logo}></img>
         </div>
       </div>
       {loading && <EclipseWidget />}

@@ -54,10 +54,10 @@ const DefaultHeader = () => {
             <Link className="navbar-brand" to="/per">
               <img className="heder-logo2" src={per}></img>
             </Link>
-
+            
             <Link className="navbar-brand" to="/login">
-              <img className="heder-logo2" src={prof}></img>
-            </Link>
+                <img className="heder-logo2" src={prof}></img>
+              </Link>
 
             <Link className="navbar-brand" to="/like">
               <img className="heder-logo2" src={h}></img>
@@ -81,6 +81,14 @@ const DefaultHeader = () => {
           <Link className="nav-link" to="/login">
             <img className="heder-logo" src={settings}></img>
           </Link>
+          {isAuth ? (<Link
+              className="navbar-brand"
+              to="/"
+              onClick={() => {
+                LogoutUser();
+              }}
+            ><FontAwesomeIcon className="heder-logo2" icon={faSignOutAlt} size={"1x"} /></Link>
+            ) : (<div/>)}
         </div>
       </div>
     </nav>
