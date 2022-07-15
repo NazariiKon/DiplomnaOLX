@@ -1,0 +1,1 @@
+export const ADV_ALL = 'ADV_ALL';
