@@ -17,8 +17,8 @@ import "./menu.css";
 const Menu = () => {
   return (
     <>
-      <div className="accordion" id="accordionExample">
-        <div className="accordion-item">
+      <div className="accordion filter" id="accordionExample">
+        <div className="accordion-item filter">
           <h2 className="accordion-header" id="headingOne">
             <button
               className="accordion-button text-menu"
@@ -106,7 +106,7 @@ const Menu = () => {
           </div>
         </div>
 
-        <div className="accordion-item">
+        <div className="accordion-item filter">
           <h2 className="accordion-header" id="headingTwo">
             <button
               className="accordion-button collapsed text-menu"
@@ -151,7 +151,7 @@ const Menu = () => {
           </div>
         </div>
 
-        <div className="accordion-item">
+        <div className="accordion-item filter">
           <h2 className="accordion-header" id="headingThree">
             <button
               className="accordion-button collapsed text-menu"
@@ -173,7 +173,7 @@ const Menu = () => {
             <div className="accordion-body">body_content</div>
           </div>
         </div>
-        <div className="accordion-item">
+        <div className="accordion-item filter">
           <h2 className="accordion-header" id="headingFour">
             <button
               className="accordion-button collapsed text-menu"
@@ -215,7 +215,7 @@ const Menu = () => {
             </div>
           </div>
         </div>
-        <div className="accordion-item">
+        <div className="accordion-item filter">
           <h2 className="accordion-header" id="headingFive">
             <button
               className="accordion-button collapsed text-menu"

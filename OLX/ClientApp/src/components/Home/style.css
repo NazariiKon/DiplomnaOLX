@@ -168,7 +168,7 @@
 }
 
 .text_karesel {
-  width: 313px;
+  width: 90%;
   height: 44px;
   left: 376px;
   top: 672px;
@@ -228,8 +228,6 @@
 
 .card-text {
   margin-left: 10px;
-  width: 142.39px;
-  height: 24px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -242,8 +240,6 @@
 
 .card-text2 {
   margin-left: 10px;
-  width: 88.19px;
-  height: 29px;
   left: 49px;
   top: 1734px;
   font-family: "Montserrat";
@@ -260,4 +256,45 @@
   width: 320px;
   height: 221px;
   border-radius: 10px;
+}
+
+.card-title-vip {
+  margin-left: 10px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  /* display: flex;
+  align-items: center; */
+
+  /* dark gray */
+  color: #474746;
+}
+
+.card-text-vip {
+  margin-left: 10px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* gray_normal */
+  color: #999999;
+}
+
+.card-text2-vip {
+  margin-left: 10px;
+  
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  
+  /* pink */
+  color: #CD5091;
 }

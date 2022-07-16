@@ -1,4 +1,4 @@
-import { ADV_ALL, ADV_VIP } from "./types";
+import { ADV_ALL, ADV_VIP_NEXT, ADV_VIP_BACK} from "./types";
 
 const initialState = {
     list: [],
@@ -15,7 +15,14 @@ export const advReducer = (state=initialState, action) => {
             };
         }
 
-        case ADV_VIP: {
+        case ADV_VIP_NEXT: {
+            return {
+                ...state,
+                vipList: payload
+            };
+        }
+
+        case ADV_VIP_BACK: {
             return {
                 ...state,
                 vipList: payload

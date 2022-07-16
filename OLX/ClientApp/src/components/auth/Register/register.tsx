@@ -97,7 +97,7 @@ const RegisterPage = () => {
           <div className="text-center mb-4 ">
             <GoogleLogin
               render={(renderProps) => (
-                <a onClick={renderProps.onClick} >
+                <a onClick={renderProps.onClick}  role="button">
                   <img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img>
                 </a>
               )}

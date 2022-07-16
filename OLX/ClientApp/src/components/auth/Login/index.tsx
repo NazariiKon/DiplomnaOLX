@@ -81,17 +81,18 @@ const LoginPage: React.FC = () => {
           <div className="text-center mt-4 mb-4">
             <h1 className="welcome">Вітаємо вас</h1>
           </div>
-          <div className="text-center mb-4 ">
+          <div className="text-center mb-4">
             <GoogleLogin
               render={(renderProps) => (
-                <a onClick={renderProps.onClick} >
+                <a onClick={renderProps.onClick}  role="button">
                   <img className="col-12 col-lg-8 col-md-10 col-sm-12 col-xl-7" src={google_auth}></img>
                 </a>
               )}
               clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string}
               onSuccess={loginGoogle}
               onFailure={loginGoogle}
-              cookiePolicy={'https://localhost:44334'}
+              cookiePolicy={'https://localhost:44334'
+            }
             >
             </GoogleLogin>
           </div>

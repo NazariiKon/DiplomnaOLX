@@ -20,6 +20,7 @@ namespace OLX.Controllers
     {
         private readonly IMapper _mapper;
         private readonly EFDbContext _context;
+        private static int count = -4;
         public AdvertisementController(IMapper mapper, EFDbContext context)
         {
             _mapper = mapper;
@@ -56,13 +57,31 @@ namespace OLX.Controllers
         [HttpGet("vipList")]
         public IActionResult VipIndex() // вертає ліст продуктів з затримкой 2000
         {
+            count += 4;
+            if (count > _context.Advertisement.Count()-4) count = 0;
             //Thread.Sleep(2000); 
             var list = _context.Advertisement
                     .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
+                    .Skip(count)
                     .Take(4)
                     .ToList();
             return Ok(list);
         }
+
+        [HttpGet("vipListBack")]
+        public IActionResult VipIndexBack() // вертає ліст продуктів з затримкой 2000
+        {
+            count -= 4;
+            if (count < 0) count = _context.Advertisement.Count()-4;
+            //Thread.Sleep(2000); 
+            var list = _context.Advertisement
+                    .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
+                    .Skip(count)
+                    .Take(4)
+                    .ToList();
+            return Ok(list);
+        }
+
 
         [HttpPost("delete")]
         public IActionResult Delete(int id)
