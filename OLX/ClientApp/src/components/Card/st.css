@@ -1,0 +1,45 @@
+
+.card {
+  margin: 20px;
+  width: 271px;
+  height: 393px;
+  background: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(153, 153, 153, 0.5);
+  border-radius: 10px;
+}
+
+.card-title {
+  margin-left: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 26px;
+  color: #474746;
+}
+.card-text {
+  margin-left: 10px;
+  width: 142.39px;
+  height: 24px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #999999;
+}
+
+.card-text2 {
+  margin: 10px;
+ 
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 29px;
+  color: #cd5091;
+  align-items: self-position;
+  text-align: match-parent;
+}
