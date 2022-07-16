@@ -61,7 +61,7 @@ const HomePage = () => {
                         return (
                           <div className="card-vip col-2">
                             <div className="row">
-                              <img className="card-image" src={"https://localhost:44334/images/" + adv.image} />
+                              <img className="card-image" src={"/images/" + adv.image} />
                               {/* <img src={card} className="card-img-top" alt="photo" /> */}
                               <div className="card-body col">
                               </div>
@@ -103,7 +103,7 @@ const HomePage = () => {
                         return (
                           <div className="card col-4">
                             <div className="row">
-                              <img className="card-image" src={"https://localhost:44334/images/" + adv.image} />
+                              <img className="card-image" src={"/images/" + adv.image} />
                               {/* <img src={card} className="card-img-top" alt="photo" /> */}
                               <div className="card-body col">
                               </div>
