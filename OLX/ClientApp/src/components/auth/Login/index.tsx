@@ -76,7 +76,7 @@ const LoginPage: React.FC = () => {
       <Helmet>
         <title>Вхід</title>
       </Helmet>
-      <div className="row">
+      <div className="row container mx-auto">
         <div className="col-5">
           <div className="text-center mt-4 mb-4">
             <h1 className="welcome">Вітаємо вас</h1>

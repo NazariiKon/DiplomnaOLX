@@ -89,7 +89,7 @@ const RegisterPage = () => {
       <Helmet>
         <title>Реєстрація</title>
       </Helmet>
-      <div className="row">
+      <div className="row container mx-auto">
         <div className="col-6">
           <div className="text-center mt-4 mb-4">
             <h1 className="welcome">Реєстрація</h1>

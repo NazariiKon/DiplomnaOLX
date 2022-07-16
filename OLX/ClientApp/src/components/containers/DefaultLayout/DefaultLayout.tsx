@@ -9,7 +9,7 @@ const DefaultLayout = () => {
     <div className="defaultPositions">
       <div>
         <Header />
-        <div className="container pad pb-4">
+        <div className="pad pb-4">
           
           <Outlet />
         </div>

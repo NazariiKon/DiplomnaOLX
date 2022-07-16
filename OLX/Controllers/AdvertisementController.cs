@@ -53,6 +53,17 @@ namespace OLX.Controllers
             return Ok(list);
         }
 
+        [HttpGet("vipList")]
+        public IActionResult VipIndex() // вертає ліст продуктів з затримкой 2000
+        {
+            //Thread.Sleep(2000); 
+            var list = _context.Advertisement
+                    .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
+                    .Take(4)
+                    .ToList();
+            return Ok(list);
+        }
+
         [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
