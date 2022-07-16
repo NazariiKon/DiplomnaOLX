@@ -133,7 +133,7 @@ namespace OLX
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                //app.UseHsts();
             }
 
 
@@ -151,7 +151,7 @@ namespace OLX
                 RequestPath = "/images"
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
