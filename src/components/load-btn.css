@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+.text-box {
+
+
+
+}
+
+.load-pictures-button:link,
+.load-pictures-button:visited {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 250px;
+      gap: 10px;
+      margin-left: -100px;
+      display: inline-block;
+      position: relative;
+      max-width: 550px;
+      max-height: 33px;
+      width: 550px;
+      height: 33px;
+      left: 289px;
+
+      text-decoration: none;
+      /* pink */
+
+      background: #CD5091;
+      border-radius: 20px;
+
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 39px;
+
+      /* identical to box height */
+
+
+      align-items: center;
+      text-align: center;
+
+      /* white */
+
+      color: #F9F9F9;
+}
+
+.load-pictures-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.load-pictures-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.load-pictures-button-darkpurple {
+    background-color: #80335b;
+    color: #777;
+}
+
+.load-pictures-button::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.load-pictures-button-white::after {
+    background-color: #fff;
+}
+
+.load-pictures-button:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.load-pictures-button-animated {
+    animation: moveInBottom 1s ease-out;
+    animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
