@@ -22,7 +22,7 @@ import h from "../../../images/icon/h.png";
 import ukr from "../../../images/icon/ukr.png";
 import eng from "../../../images/icon/eng.png";
 import bels from "../../../images/icon/bels.png";
-import settings from "../../../images/icon/settings.png";
+import menu from "../../../images/icon/menu.png";
 
 const DefaultHeader = () => {
   const { isAuth } = useTypedSelector((store) => store.auth);
@@ -78,7 +78,7 @@ const DefaultHeader = () => {
         </div>
         <div className="d-grid gap-2 mx-auto">
           <div className="container nav-brand">
-            <Link className="navbar-brand" to="/#">
+            <Link className="navbar-brand" to="/profil">
               <img src={ukr}></img>
             </Link>
             <Link className="navbar-brand" to="/#">
@@ -91,7 +91,7 @@ const DefaultHeader = () => {
             <img className="heder-logo" src={bels}></img>
           </Link>
           <Link className="nav-link" to="/login">
-            <img className="heder-logo" src={settings}></img>
+            <img className="heder-logo" src={menu}></img>
           </Link>
           {isAuth ? (<Link
               className="navbar-brand"

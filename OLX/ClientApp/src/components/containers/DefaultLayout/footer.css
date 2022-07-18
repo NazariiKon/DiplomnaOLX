@@ -3,8 +3,8 @@
     height: 400;
     bottom: -4px;
     /* left:0px;
-    bottom:0px; */
-    background: rgba(240, 171, 59, 0.2);
+    bottom:0px; 
+    background: rgba(240, 171, 59, 0.2);*/
     border-radius: 20px 20px 0px 0px;
 }
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap');
@@ -45,4 +45,8 @@
 
 .footer-logo {
     margin-right: 2%;
+}
+.footer-border{
+  
+    border-bottom: 2px solid pink;
 }

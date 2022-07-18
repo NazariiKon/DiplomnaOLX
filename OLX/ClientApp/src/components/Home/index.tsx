@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Menu from "../menu/menu";
+import Search from "../Search/search";
 //import "./iconstyle.css";
 
 const HomePage = () => {
@@ -24,28 +25,25 @@ const HomePage = () => {
     try {
       AdvAll();
       VipAdv();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Server error global");
     }
-  }, [])
+  }, []);
 
   const onNextVipHandler = () => {
     try {
       VipAdv();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Server error global");
     }
-  }
+  };
   const onBackVipHandler = () => {
     try {
       VipAdvBack();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Server error global");
     }
-  }
+  };
 
   return (
     <>
@@ -61,54 +59,61 @@ const HomePage = () => {
           <div className="col-9">
             <div className="row">
               <div className="">
-                <form className="d-flex">
-                  <input
-                    className="form-control me-2 border-warning"
-                    type="search"
-                    placeholder="Пошук"
-                    aria-label="Пошук"
-                  />
-                </form>
+                <Search />
                 <div>
                   <a href="/register">
                     <img className="baner" src={logo} alt="baner"></img>
                   </a>
                   <div className="my-4 d-flex">
                     <code className="text_karesel">VIP-оголошення</code>
-                    <a className="ml-auto p-2" role="button" onClick={onBackVipHandler}><img src={left}></img></a>
-                    <a className="ml-auto p-2" role="button" onClick={onNextVipHandler}><img src={right}></img></a>
+                    <a
+                      className="ml-auto p-2"
+                      role="button"
+                      onClick={onBackVipHandler}
+                    >
+                      <img src={left}></img>
+                    </a>
+                    <a
+                      className="ml-auto p-2"
+                      role="button"
+                      onClick={onNextVipHandler}
+                    >
+                      <img src={right}></img>
+                    </a>
                   </div>
                   <div className="row">
-                    {
-                      vipList.map((adv: any, index: any) => {
-                        return (
-                          <div className="card-vip col-2">
-                            <div className="row">
-                              <img className="card-image" src={"/images/" + adv.image} />
-                              {/* <img src={card} className="card-img-top" alt="photo" /> */}
-                              <div className="card-body col">
-                                <div className="row">
-                                  <div className="col-9">
-                                    <h5 className="card-title-vip">{adv.name}</h5>
-                                    <p className="card-text-vip">{adv.description}</p>
-                                    <p className="card-text2-vip">{adv.price}</p>
-                                  </div>
-                                  <div className=" col-3 ">
-                                    <a href="#" className="btn " >
-                                      <img src={card_plas} alt="+"></img>
-                                    </a>
-                                    <a href="#" className="btn ">
-                                      <img src={card_h} alt="like"></img>
-                                    </a>
-                                  </div>
+                    {vipList.map((adv: any, index: any) => {
+                      return (
+                        <div className="card-vip col-2">
+                          <div className="row">
+                            <img
+                              className="card-image"
+                              src={"/images/" + adv.image}
+                            />
+                            {/* <img src={card} className="card-img-top" alt="photo" /> */}
+                            <div className="card-body col">
+                              <div className="row">
+                                <div className="col-9">
+                                  <h5 className="card-title-vip">{adv.name}</h5>
+                                  <p className="card-text-vip">
+                                    {adv.description}
+                                  </p>
+                                  <p className="card-text2-vip">{adv.price}</p>
+                                </div>
+                                <div className=" col-3 ">
+                                  <a href="#" className="btn ">
+                                    <img src={card_plas} alt="+"></img>
+                                  </a>
+                                  <a href="#" className="btn ">
+                                    <img src={card_h} alt="like"></img>
+                                  </a>
                                 </div>
                               </div>
                             </div>
                           </div>
-
-                        );
-                      })
-                    }
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -123,34 +128,33 @@ const HomePage = () => {
         </div>
 
         <div className="row px-3">
-          {
-            list.map((adv: any, index: any) => {
-              return (
-                <div className="card col-4">
-                  <div className="row">
-                    <img className="card-image" src={"/images/" + adv.image} />
-                    {/* <img src={card} className="card-img-top" alt="photo" /> */}
-                    <div className="card-body col">
-                      <div className="row">
-                        <div className=" col-9">
-                          <h5 className="card-title">{adv.name}</h5>
-                          <p className="card-text">{adv.description}</p>
-                          <p className="card-text2">{adv.price}</p>
-                        </div>
-                        <div className=" col-3 ">
-                          <a href="#" className="btn " >
-                            <img src={card_plas} alt="+"></img>
-                          </a>
-                          <a href="#" className="btn ">
-                            <img src={card_h} alt="like"></img>
-                          </a></div></div>
+          {list.map((adv: any, index: any) => {
+            return (
+              <div className="card col-4">
+                <div className="row">
+                  <img className="card-image" src={"/images/" + adv.image} />
+                  {/* <img src={card} className="card-img-top" alt="photo" /> */}
+                  <div className="card-body col">
+                    <div className="row">
+                      <div className=" col-9">
+                        <h5 className="card-title">{adv.name}</h5>
+                        <p className="card-text">{adv.description}</p>
+                        <p className="card-text2">{adv.price}</p>
+                      </div>
+                      <div className=" col-3 ">
+                        <a href="#" className="btn ">
+                          <img src={card_plas} alt="+"></img>
+                        </a>
+                        <a href="#" className="btn ">
+                          <img src={card_h} alt="like"></img>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-              );
-            })
-          }
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
