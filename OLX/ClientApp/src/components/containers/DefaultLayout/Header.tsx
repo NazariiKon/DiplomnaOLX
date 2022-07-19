@@ -67,7 +67,7 @@ const DefaultHeader = () => {
               <img className="heder-logo2" src={per}></img>
             </Link>
             
-            <Link className="navbar-brand" to="/login">
+            <Link className="navbar-brand" to="/profil">
                 <img className="heder-logo2" src={prof}></img>
               </Link>
 
@@ -78,7 +78,7 @@ const DefaultHeader = () => {
         </div>
         <div className="d-grid gap-2 mx-auto">
           <div className="container nav-brand">
-            <Link className="navbar-brand" to="/profil">
+            <Link className="navbar-brand" to="/#">
               <img src={ukr}></img>
             </Link>
             <Link className="navbar-brand" to="/#">
