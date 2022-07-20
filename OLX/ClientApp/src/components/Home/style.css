@@ -258,6 +258,78 @@
   border-radius: 10px;
 }
 
+.detail {
+  background: #F4F3F3;
+  border-radius: 25px;
+}
+
+.detail-imageCard {
+  width: 472.38px;
+  height: 473px;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.detail-image {
+  width: 472.38px;
+  height: 473px;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.detail-title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 26px;
+  color: #19191A;
+}
+
+.detail-text {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #999999;
+}
+
+.detail-text2 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #CD5091;
+}
+
+.detail-tag {
+  border: 1px solid #999999;
+  border-radius: 14px;
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.detail-tag-text {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 26px;
+
+  color: #999999;
+}
+
+.detail-tag-desc {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 129.9%;
+  color: #575757;
+}
+
+
 .card-title-vip {
   margin-left: 10px;
 
@@ -288,13 +360,13 @@
 
 .card-text2-vip {
   margin-left: 10px;
-  
+
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
-  
+
   /* pink */
   color: #CD5091;
 }

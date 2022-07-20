@@ -7,6 +7,7 @@ using OLX.Helpers;
 using OLX.Models;
 using OLX.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -20,11 +21,13 @@ namespace OLX.Controllers
     {
         private readonly IMapper _mapper;
         private readonly EFDbContext _context;
+        private List<int> liked;
         private static int count = -4;
         public AdvertisementController(IMapper mapper, EFDbContext context)
         {
             _mapper = mapper;
             _context = context;
+            liked = new List<int>();
         }
 
         [HttpPost("create")]
@@ -81,7 +84,6 @@ namespace OLX.Controllers
                     .ToList();
             return Ok(list);
         }
-
 
         [HttpPost("delete")]
         public IActionResult Delete(int id)

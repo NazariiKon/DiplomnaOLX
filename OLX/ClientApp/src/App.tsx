@@ -20,7 +20,7 @@ import NoMatch from "./components/NoMatch";
 
 const Register = lazy(() => import("./components/auth/Register/index"));
 const Login = lazy(() => import("./components/auth/Login/index"));
-
+const Like = lazy(() => import("./components/Like/index"));
 
 
 
@@ -51,6 +51,14 @@ function App() {
             element={
               <Suspense fallback={null}>
                 <Login />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/like"
+            element={
+              <Suspense fallback={null}>
+                <Like />
               </Suspense>
             }
           />

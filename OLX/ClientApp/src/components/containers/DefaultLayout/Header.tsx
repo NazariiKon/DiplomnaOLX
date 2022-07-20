@@ -33,7 +33,7 @@ const DefaultHeader = () => {
 
   return (
     <nav className="navbar navbar-expand-sm rounded-3 border border-warning ">
-      <div className="container">
+      <div className="container-fluid">
         <div className="d-grid gap-2 d-md-block">
           <div className="container">
             <Link className="navbar-brand" to="/">
@@ -76,7 +76,7 @@ const DefaultHeader = () => {
             </Link>
           </div>
         </div>
-        <div className="d-grid gap-2 mx-auto">
+        <div className="d-grid gap-2">
           <div className="container nav-brand">
             <Link className="navbar-brand" to="/#">
               <img src={ukr}></img>

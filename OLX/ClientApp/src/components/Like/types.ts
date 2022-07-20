@@ -1,0 +1,1 @@
+export const ADV_LIKE = 'ADV_LIKE';
