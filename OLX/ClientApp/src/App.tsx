@@ -21,6 +21,8 @@ import NoMatch from "./components/NoMatch";
 const Register = lazy(() => import("./components/auth/Register/index"));
 const Login = lazy(() => import("./components/auth/Login/index"));
 const Like = lazy(() => import("./components/Like/index"));
+const Profil = lazy(() => import("./components/Profil/profil"));
+
 
 
 
@@ -38,6 +40,14 @@ function App() {
           <Route index element={<Home />} />
 
           {/* AuthRoutes */}
+          <Route
+            path="/profil"
+            element={
+              <Suspense fallback={null}>
+                <Profil />
+              </Suspense>
+            }
+          />
           <Route
             path="/register"
             element={

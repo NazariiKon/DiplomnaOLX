@@ -22,7 +22,7 @@ import h from "../../../images/icon/h.png";
 import ukr from "../../../images/icon/ukr.png";
 import eng from "../../../images/icon/eng.png";
 import bels from "../../../images/icon/bels.png";
-import settings from "../../../images/icon/settings.png";
+import menu from "../../../images/icon/menu.png";
 
 const DefaultHeader = () => {
   const { isAuth } = useTypedSelector((store) => store.auth);
@@ -67,7 +67,7 @@ const DefaultHeader = () => {
               <img className="heder-logo2" src={per}></img>
             </Link>
             
-            <Link className="navbar-brand" to="/login">
+            <Link className="navbar-brand" to="/profil">
                 <img className="heder-logo2" src={prof}></img>
               </Link>
 
@@ -91,7 +91,7 @@ const DefaultHeader = () => {
             <img className="heder-logo" src={bels}></img>
           </Link>
           <Link className="nav-link" to="/login">
-            <img className="heder-logo" src={settings}></img>
+            <img className="heder-logo" src={menu}></img>
           </Link>
           {isAuth ? (<Link
               className="navbar-brand"

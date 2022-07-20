@@ -1,0 +1,37 @@
+
+.user {
+  padding: 50px;
+  width: 273px;
+  height: 382px;
+  left: 69px;
+  top: 169px;
+}
+
+.inf{
+  position: absolute;
+  height: 49px;
+  left: 389px;
+  top: 234px;
+}
+
+.user_name {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 49px;
+  color: #474746;
+}
+
+.user_inf {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #474746;
+}
+
+.img_lik{
+   margin: 20px;
+}

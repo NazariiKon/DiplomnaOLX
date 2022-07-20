@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Menu from "../menu/menu";
+import Search from "../Search/search";
 //import "./iconstyle.css";
 
 const HomePage = () => {
@@ -25,25 +26,22 @@ const HomePage = () => {
     try {
       AdvAll();
       VipAdv();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Server error global");
     }
-  }, [])
+  }, []);
 
   const onNextVipHandler = () => {
     try {
       VipAdv();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Server error global");
     }
-  }
+  };
   const onBackVipHandler = () => {
     try {
       VipAdvBack();
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Server error global");
     }
   }
@@ -66,14 +64,7 @@ const HomePage = () => {
           <div className="col-9">
             <div className="row">
               <div className="">
-                <form className="d-flex">
-                  <input
-                    className="form-control me-2 border-warning"
-                    type="search"
-                    placeholder="Пошук"
-                    aria-label="Пошук"
-                  />
-                </form>
+                <Search />
                 <div>
                   {advDetails ? (
                     <div>
