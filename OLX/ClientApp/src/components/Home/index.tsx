@@ -7,6 +7,9 @@ import card_plas from "../../images/icon/plas_to.png";
 import card_h from "../../images/icon/h_to.png";
 import left from "../../images/icon/left.png";
 import right from "../../images/icon/right.png";
+import girl from "../../images/girl.png";
+import box from "../../images/box.png";
+import union from "../../images/Union.png";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -69,30 +72,77 @@ const HomePage = () => {
                   {advDetails ? (
                     <div>
                       <a className="ml-auto p-2" role="button" onClick={() => setAdvDetails(null)}><img src={left}></img></a>
-                      <div className="row detail col-lg-11 mx-auto">
-                        <div className="col-6 detail-imageCard">
-                          <img className="detail-image" src={"/images/" + advDetails.image} alt="noImage" />
-                        </div>
-                        <div className="col-6 mx-4 my-4">
-                          <div className="row">
-                            <div className="col-11">
-                              <p className="detail-title mb-0">{advDetails.name}</p>
-                              <p className="detail-text mb-5">{advDetails.description}</p>
-                              <p className="detail-text2 mb-5">{advDetails.price}</p>
-                              <p className="detail-title mb-1">Опис</p>
-                              <div className="detail-tag text-center mb-2">
-                                <p className="detail-tag-text m-1">Жінкам</p>
+                      <div className="detail col-lg-11 mx-auto">
+                        <div className="row">
+                          <div className="col-6 detail-imageCard">
+                            <img className="detail-image" src={"/images/" + advDetails.image} alt="noImage" />
+                          </div>
+                          <div className="col-6 mx-4 my-4">
+                            <div className="row">
+                              <div className="col-11">
+                                <p className="detail-title mb-0">{advDetails.name}</p>
+                                <p className="detail-text mb-5">{advDetails.description}</p>
+                                <p className="detail-text2 mb-5">{advDetails.price} грн</p>
+                                <p className="detail-title mb-1">Опис</p>
+                                <div className="detail-tag text-center mb-2">
+                                  <p className="detail-tag-text m-1">Жінкам</p>
+                                </div>
+                                <p className="detail-tag-desc mt-3 mb-5">{advDetails.description}</p>
                               </div>
-                              <p className="detail-tag-desc mt-3 mb-5">{advDetails.description}</p>
+                              <div className="col-1">
+                                <a href="#" className="btn " >
+                                  <img src={card_plas} alt="+"></img>
+                                </a>
+                                <a href="#" className="btn ">
+                                  <img src={card_h} alt="like"></img>
+                                </a>
+                              </div>
                             </div>
-                            <div className="col-1">
-                              <a href="#" className="btn " >
-                                <img src={card_plas} alt="+"></img>
-                              </a>
-                              <a href="#" className="btn ">
-                                <img src={card_h} alt="like"></img>
-                              </a>
+                          </div>
+
+                        </div>
+
+                        <div className="row mt-5 mx-3">
+                          <div className="col-6 row">
+                            <div className="col-3">
+                              <img className="detail-imageProfil" src={girl}></img>
                             </div>
+                            <div className="col-9">
+                              <p className="detail-profileText mb-1">Maria_ry</p>
+                              <p className="detail-profileText-dataReg">На all in з 2019 р.</p>
+                            </div>
+                          </div>
+                          <div className="col-6"></div>
+                        </div>
+
+                        <div className="row mt-5 mx-3">
+                          <div className="col-6">
+                            <p className="detail-staticText">Про користувача</p>
+                            <div className="row">
+                              <div className="col-2">
+                                <img src={union}></img>
+                              </div>
+                              <div className="col-10">
+                                <p className="detail-aboutProfile">2 позитивних відгуки</p>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="col-2">
+                                <img src={box}></img>
+                              </div>
+                              <div className="col-10">
+                                <p className="detail-aboutProfile">3 успішних доставки</p>
+                              </div>
+                            </div>
+                            <a className="detail-text3 text-decoration-none">Усі оголошення автора</a>
+                            <br />
+                            <div className="mt-3">
+                              <button className="detail-button">Телефон</button>
+                              <button className="detail-button mx-4">Повідомлення</button>
+                            </div>
+                          </div>
+                          <div className="col-6">
+                            <p className="detail-staticText">Місцезнаходження</p>
                           </div>
                         </div>
                       </div>
@@ -170,7 +220,7 @@ const HomePage = () => {
                           <h5 className="card-title">{adv.name}</h5>
                           <p className="card-text">{adv.description}</p>
                           <p className="card-text2">{adv.price} грн</p>
-                        </div>  
+                        </div>
                         <div className=" col-3 ">
                           <a href="#" className="btn " >
                             <img src={card_plas} alt="+"></img>
