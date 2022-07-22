@@ -1,5 +1,6 @@
 import "bootstrap";
-//import "./search.css";
+import "./search.css";
+import searchLogo from "../../images/search.png";
 
 
 const search = () => {
@@ -7,8 +8,7 @@ const search = () => {
     <div>
       <form className="d-flex ">
         <input
-          className="form-control me-2 border-warning"
-          type="search"
+          className="search me-2"
           placeholder="Пошук"
           aria-label="Пошук"
         />
