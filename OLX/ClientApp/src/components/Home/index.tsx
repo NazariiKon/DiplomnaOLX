@@ -79,7 +79,7 @@ const HomePage = () => {
                           </div>
                           <div className="col-6 mx-4 my-4">
                             <div className="row">
-                              <div className="col-11">
+                              <div className="col-10">
                                 <p className="detail-title mb-0">{advDetails.name}</p>
                                 <p className="detail-text mb-5">{advDetails.description}</p>
                                 <p className="detail-text2 mb-5">{advDetails.price} грн</p>
@@ -89,7 +89,7 @@ const HomePage = () => {
                                 </div>
                                 <p className="detail-tag-desc mt-3 mb-5">{advDetails.description}</p>
                               </div>
-                              <div className="col-1">
+                              <div className="col-2">
                                 <a href="#" className="btn " >
                                   <img src={card_plas} alt="+"></img>
                                 </a>

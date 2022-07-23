@@ -10,13 +10,11 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
-  display: flex;
-  align-items: center;
   color: #474746;
   flex: none;
-  order: 1;
-  flex-grow: 0;
 }
+
+a {text-decoration: none;}
 
 .kategory {
   margin-top: 15px;
@@ -27,12 +25,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 10px;
-  display: flex;
-  align-items: center;
   color: #474746;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
 }
 
 .icon-menu {

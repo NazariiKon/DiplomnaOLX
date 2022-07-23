@@ -32,7 +32,7 @@ const DefaultHeader = () => {
   const { LogoutUser } = useActions();
 
   return (
-    <nav className="navbar navbar-expand-sm rounded-3 border border-warning ">
+    <nav className="navbar navbar-expand-sm rounded-3 header">
       <div className="container-fluid">
         <div className="d-grid gap-2 d-md-block">
           <div className="container">

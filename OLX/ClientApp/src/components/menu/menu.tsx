@@ -11,6 +11,7 @@ import shirt from "../../images/icon/t_shirt.png";
 import coffee from "../../images/icon/coffee.png";
 import ring from "../../images/icon/ring.png";
 import pazle from "../../images/icon/pazle.png";
+import line from "../../images/icon/line_menu.png";
 import "./menu.css";
 
 
@@ -18,18 +19,26 @@ const Menu = () => {
   return (
     <>
       <div className="accordion filter" id="accordionExample">
-        <div className="accordion-item filter">
+        <div className="">
           <h2 className="accordion-header" id="headingOne">
-            <button
-              className="accordion-button text-menu"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              Категорії
-            </button>
+            <div className="row p-4">
+              <div className="col-9">
+                <a
+                  className="text-menu ext-decoration-none text-reset"
+                >
+                  Категорії
+                </a>
+              </div>
+              <div className="col-2 text-center">
+                <a type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne">
+                  <img src={line}></img>
+                </a>
+              </div>
+            </div>
           </h2>
           <div
             id="collapseOne"
@@ -38,7 +47,7 @@ const Menu = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              <ul className="nav flex-column ">
+              <ul className="nav flex-column px-3">
                 <li className="nav-item">
                   <a
                     className="nav-link active kategory "
@@ -105,19 +114,26 @@ const Menu = () => {
             </div>
           </div>
         </div>
-
-        <div className="accordion-item filter">
+        <div className="">
           <h2 className="accordion-header" id="headingTwo">
-            <button
-              className="accordion-button collapsed text-menu"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-              aria-expanded="false"
-              aria-controls="collapseTwo"
-            >
-              Фільтр
-            </button>
+            <div className="row p-4">
+              <div className="col-9">
+                <a
+                  className="text-menu ext-decoration-none text-reset"
+                >
+                  Фільтр
+                </a>
+              </div>
+              <div className="col-2 text-center">
+                <a type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo">
+                  <img src={line}></img>
+                </a>
+              </div>
+            </div>
           </h2>
           <div
             id="collapseTwo"
@@ -150,19 +166,26 @@ const Menu = () => {
             </div>
           </div>
         </div>
-
-        <div className="accordion-item filter">
+        <div className="">
           <h2 className="accordion-header" id="headingThree">
-            <button
-              className="accordion-button collapsed text-menu"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseThree"
-              aria-expanded="false"
-              aria-controls="collapseThree"
-            >
-              Обране
-            </button>
+            <div className="row p-4">
+              <div className="col-9">
+                <a
+                  className="text-menu ext-decoration-none text-reset"
+                >
+                  Обране
+                </a>
+              </div>
+              <div className="col-2 text-center">
+                <a type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree">
+                  <img src={line}></img>
+                </a>
+              </div>
+            </div>
           </h2>
           <div
             id="collapseThree"
@@ -173,18 +196,26 @@ const Menu = () => {
             <div className="accordion-body">body_content</div>
           </div>
         </div>
-        <div className="accordion-item filter">
+        <div className="">
           <h2 className="accordion-header" id="headingFour">
-            <button
-              className="accordion-button collapsed text-menu"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFour"
-              aria-expanded="false"
-              aria-controls="collapseFour"
-            >
-              Стан
-            </button>
+            <div className="row p-4">
+              <div className="col-9">
+                <a
+                  className="text-menu ext-decoration-none text-reset"
+                >
+                  Стан
+                </a>
+              </div>
+              <div className="col-2 text-center">
+                <a type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour">
+                  <img src={line}></img>
+                </a>
+              </div>
+            </div>
           </h2>
           <div
             id="collapseFour"
@@ -215,18 +246,26 @@ const Menu = () => {
             </div>
           </div>
         </div>
-        <div className="accordion-item filter">
+        <div className="">
           <h2 className="accordion-header" id="headingFive">
-            <button
-              className="accordion-button collapsed text-menu"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFive"
-              aria-expanded="false"
-              aria-controls="collapseFive"
-            >
-              Колір
-            </button>
+            <div className="row p-4">
+              <div className="col-9">
+                <a
+                  className="text-menu ext-decoration-none text-reset"
+                >
+                  Колір
+                </a>
+              </div>
+              <div className="col-2 text-center">
+                <a type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseFive">
+                  <img src={line}></img>
+                </a>
+              </div>
+            </div>
           </h2>
           <div
             id="collapseFive"

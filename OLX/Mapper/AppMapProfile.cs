@@ -29,7 +29,7 @@ namespace OLX.Mapper
             CreateMap<AdvertisementEntity, AdvertisementItemViewModel>()
                .ForMember(x => x.DateCreated, opt => opt.MapFrom(x =>
                     x.DateCreated.ToString("dd.MM.yyyy HH:mm:ss")))
-               .ForMember(x => x.Price, opt => opt.MapFrom(x => x.Price.ToString(cultureInfo)));
+               .ForMember(x => x.Price, opt => opt.MapFrom(x => Decimal.Round(x.Price).ToString(cultureInfo)));
 
             CreateMap<EditAdvertisementViewModel, AdvertisementEntity>()
                  .ForMember(x => x.Image, opt => opt.Ignore())
