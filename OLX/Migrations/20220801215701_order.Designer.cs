@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OLX.Entities;
 
@@ -10,9 +11,10 @@ using OLX.Entities;
 namespace OLX.Migrations
 {
     [DbContext(typeof(EFDbContext))]
-    partial class EFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220801215701_order")]
+    partial class order
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
@@ -309,7 +311,7 @@ namespace OLX.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AdvertisementId")
+                    b.Property<int?>("AdvertisementId")
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("BuyPrice")
@@ -322,6 +324,9 @@ namespace OLX.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -422,9 +427,7 @@ namespace OLX.Migrations
                 {
                     b.HasOne("OLX.Entities.AdvertisementEntity", "Advertisement")
                         .WithMany()
-                        .HasForeignKey("AdvertisementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AdvertisementId");
 
                     b.HasOne("OLX.Entities.OrderEntity", "Order")
                         .WithMany("OrderItems")

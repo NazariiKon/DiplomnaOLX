@@ -195,7 +195,7 @@ const Menu = () => {
           >
             <div className="accordion-body">body_content</div>
           </div>
-        </div>
+        </div>  
         <div className="">
           <h2 className="accordion-header" id="headingFour">
             <div className="row p-4">

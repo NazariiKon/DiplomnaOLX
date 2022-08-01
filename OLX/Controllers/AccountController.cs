@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using OLX.Entities;
@@ -21,6 +20,7 @@ using OLX.Interfaces;
 using OLX.DTO.Account;
 using Microsoft.Extensions.Options;
 using Google.Apis.Auth;
+using System.Security.Claims;
 
 namespace OLX.Controllers
 {
@@ -174,6 +174,28 @@ namespace OLX.Controllers
             return Ok(
                 new { token }
             );
+        }
+
+        [HttpGet]
+        [Route("profile")]
+        public async Task<IActionResult> UserProfile()
+        {
+            try
+            {
+                //Thread.Sleep(2000);
+                string userName = User.Claims.FirstOrDefault().Value;
+                var user = await _userManager.FindByNameAsync(userName);
+                var model = _mapper.Map<ProfileViewModel>(user);
+
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new
+                {
+                    invalid = ex.Message
+                });
+            }
         }
 
         private async Task<GoogleJsonWebSignature.Payload> VerifyGoogleToken(ExternalLoginDTO request)

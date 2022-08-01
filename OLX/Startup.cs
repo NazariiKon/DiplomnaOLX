@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +22,8 @@ using OLX.Services;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using OLX.Helpers;
+using System.Collections.Generic;
+
 
 namespace OLX
 {
@@ -97,18 +100,14 @@ namespace OLX
                     BearerFormat = "JWT",
                     Scheme = "Bearer"
                 });
-                option.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
+                option.AddSecurityRequirement(new OpenApiSecurityRequirement{
                     {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type=ReferenceType.SecurityScheme,
-                                Id="Bearer"
+                        new OpenApiSecurityScheme{
+                            Reference = new OpenApiReference{
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
                             }
-                        },
-                        new string[]{}
+                        },new List<string>()
                     }
                 });
             });
@@ -140,6 +139,8 @@ namespace OLX
             app.UseSwagger();
             app.UseSwaggerUI();
 
+
+
             var dir = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
             if (!Directory.Exists(dir))
             {
@@ -156,7 +157,8 @@ namespace OLX
             app.UseSpaStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

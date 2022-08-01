@@ -9,7 +9,7 @@ const DefaultFooter = () => {
   return (
 
     <footer className="text-center text-lg-start text-muted footer-container">
-      <section className="">
+      <div className="">
         <div className="container text-center text-md-start mt-5">
           <div className="row mt-3">
             <div className="col-md-6 col-lg-6 col-xl-6 mx-auto mb-4">
@@ -48,7 +48,7 @@ const DefaultFooter = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </footer>
   );
 };
