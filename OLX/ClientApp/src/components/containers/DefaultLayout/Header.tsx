@@ -67,7 +67,7 @@ const DefaultHeader = () => {
               <img className="heder-logo2" src={per}></img>
             </Link>
             
-            <Link className="navbar-brand" to="/profil">
+            <Link className="navbar-brand" to="/profile">
                 <img className="heder-logo2" src={prof}></img>
               </Link>
 
