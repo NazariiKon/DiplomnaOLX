@@ -11,7 +11,7 @@ import './index.css'
 const ProfilePage = () => {
   const { GetProfileData } = useActions();
   const { vipList } = useTypedSelector((store) => store.adv);
-  const { VipAdv } = useActions();
+  const { VipAdv, CartAdd} = useActions();
   useEffect(() => {
     try {
       VipAdv();
@@ -24,6 +24,14 @@ const ProfilePage = () => {
     GetProfileData();
   }, [GetProfileData]);
 
+  const addToLike = (id: number) => {
+    try {
+      CartAdd(id);
+    } catch (error) {
+      console.log("Server error global");
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -31,7 +39,7 @@ const ProfilePage = () => {
       </Helmet>
 
       <div className="row">
-        <div className="">
+        <div className="search-m">
           <Search />
         </div>
       </div>
@@ -84,7 +92,7 @@ const ProfilePage = () => {
                                           <img src={card_plas} alt="+"></img>
                                         </a>
                                         <a href="#" className="btn ">
-                                          <img src={card_h} alt="like"></img>
+                                          <img src={card_h} alt="like" onClick={() => addToLike(adv.id)}></img>
                                         </a>
                                       </div>
                                     </div>

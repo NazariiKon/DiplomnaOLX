@@ -35,7 +35,7 @@ namespace OLX.Controllers
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
         private readonly IOptions<GoogleAuthSettings> _googleAuthSettings;
-        private static string _userName;
+        public static string _userName;
 
         public AccountController(EFDbContext context,
          UserManager<DbUser> userManager,

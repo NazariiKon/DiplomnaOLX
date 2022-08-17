@@ -37,6 +37,10 @@ namespace OLX.Mapper
                      DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc)));
 
             CreateMap<DbUser, ProfileViewModel>();
+
+            CreateMap<CartAddViewModel, CartEntity>();
+
+            CreateMap<CartEntity, CartItemViewModel>();
         }
     }
 }

@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 using System.Linq;
 using OLX.Models;
 using System;
+using System.Collections.Generic;
+using OLX.ViewModels;
 
 namespace OLX.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CartsController : ControllerBase
     {
         private readonly EFDbContext _context;
         private readonly UserManager<DbUser> _userManager;
         private readonly IMapper _mapper;
+        private List<AdvertisementItemViewModel> like;
 
         public CartsController(EFDbContext context,
            IMapper mapper, UserManager<DbUser> userManager)
@@ -27,21 +29,24 @@ namespace OLX.Controllers
             _context = context;
             _mapper = mapper;
             _userManager = userManager;
+            like = new List<AdvertisementItemViewModel>();
         }
 
+
+        [Route("add/{id}")]
         [HttpPost]
-        [Route("add")]
-        public async Task<IActionResult> Add([FromBody] CartAddViewModel model)
+        public async Task<IActionResult> Add(int id)
         {
             try
             {
-                string userName = User.Claims.FirstOrDefault().Value;
+                string userName = AccountController._userName;
                 var user = await _userManager.FindByEmailAsync(userName);
                 var cart = _context.Carts
-                    .SingleOrDefault(x => x.UserId == user.Id && x.AdvId == model.AdvId);
+                    .SingleOrDefault(x => x.UserId == user.Id && x.AdvId == id);
                 if (cart == null)
                 {
-                    cart = _mapper.Map<CartEntity>(model);
+                    cart = new CartEntity();
+                    cart.AdvId = id;
                     cart.UserId = user.Id;
                     _context.Carts.Add(cart);
                     await _context.SaveChangesAsync();
@@ -70,13 +75,22 @@ namespace OLX.Controllers
             try
             {
                 //Thread.Sleep(2000);
-                string userName = User.Claims.FirstOrDefault().Value;
+                string userName = AccountController._userName;
                 var user = await _userManager.FindByNameAsync(userName);
                 var model = await _context.Carts
                     .Where(x => x.UserId == user.Id)
                     .Include(x => x.Advertisement)
                     .Select(x => _mapper.Map<CartItemViewModel>(x)).ToListAsync();
-                return Ok(model);
+                foreach (var item in model)
+                {
+                    var result = _context.Advertisement
+                    .Where(x => x.Id == item.AdvId)
+                    .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
+                    .First();
+                    like.Add(result);
+                }
+
+                return Ok(like);
             }
             catch (Exception ex)
             {
@@ -93,7 +107,7 @@ namespace OLX.Controllers
         {
             try
             {
-                var cartItem = _context.Carts.SingleOrDefault(x => x.Id == id);
+                var cartItem = _context.Carts.SingleOrDefault(x => x.AdvId == id);
                 if (cartItem == null)
                     return NotFound();
                 _context.Carts.Remove(cartItem);
@@ -103,28 +117,6 @@ namespace OLX.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { invalid = "Something went wrong on server " + ex.Message });
-            }
-        }
-
-        [HttpPut("edit")]
-        public IActionResult Save([FromBody] CartEditViewModel model)
-        {
-            try
-            {
-                var cart = _context.Carts
-                    .SingleOrDefault(x => x.Id == model.Id);
-                if (cart != null)
-                {
-                    return Ok();
-                }
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    invalid = ex.Message
-                });
             }
         }
     }
