@@ -122,8 +122,8 @@ namespace OLX.Controllers
                 }
                 adv.Name = model.Name;
                 adv.Price = Decimal.Parse(model.Price);
-                adv.Contacts = model.Contacts;
-                adv.Category = model.Category;
+                //adv.Contacts = model.Contacts;
+                //adv.Category = model.Category;
                 adv.Description = model.Description;
                 _context.SaveChanges();
             }

@@ -36,6 +36,15 @@ namespace OLX.Mapper
                  .ForMember(x => x.DateCreated, opt => opt.MapFrom(x =>
                      DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc)));
 
+            CreateMap<CategoryAddViewModel, CategoryEntity>()
+             .ForMember(x => x.Image, opt => opt.Ignore());
+
+            CreateMap<CategoryEntity, CategoryItemViewModel>()
+               .ForMember(x => x.Image, opt => opt.MapFrom(x => x.Image));
+
+            CreateMap<CategoryEntity, CategoryEditViewModel>()
+                .ForMember(x => x.Image, opt => opt.MapFrom(x => x.Image));
+
             CreateMap<DbUser, ProfileViewModel>();
 
             CreateMap<CartAddViewModel, CartEntity>();
