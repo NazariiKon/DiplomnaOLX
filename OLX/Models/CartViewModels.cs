@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OLX.ViewModels;
 
 namespace OLX.Models
 {
@@ -16,7 +17,5 @@ namespace OLX.Models
     {
         public int Id { get; set; }
         public int AdvId { get; set; }
-        public string AdvName { get; set; }
-        public decimal AdvPrice { get; set; }
     }
 }

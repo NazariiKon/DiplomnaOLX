@@ -21,9 +21,16 @@ import Chat from "./components/dialog/chat";
 const Register = lazy(() => import("./components/auth/Register/index"));
 const Login = lazy(() => import("./components/auth/Login/index"));
 const Like = lazy(() => import("./components/Like/index"));
+<<<<<<< HEAD
 const Profil = lazy(() => import("./components/Profil/profil"));
 const OrderList = lazy(() => import("./components/UserData/UserOrders"));
 //const Dialog = lazy(() => import("./components/dialog/Dialogs"));
+=======
+const OrderList = lazy(() => import("./components/UserData/UserOrders"))
+
+
+
+>>>>>>> b8a55f3c86e4cbd44ea1f0f5981b59410cf07223
 
 function App() {
   // const { cartIsShow } = useTypedSelector((store) => store.cart);
@@ -38,14 +45,8 @@ function App() {
           <Route index element={<Home />} />
 
           {/* AuthRoutes */}
-          <Route
-            path="/profil"
-            element={
-              <Suspense fallback={null}>
-                <Profil />
-              </Suspense>
-            }
-          />
+          <Route path="/profile" element={<ProfilePage />} />
+
           <Route
             path="/register"
             element={
@@ -71,7 +72,6 @@ function App() {
             }
           />
 
-          <Route path="/profile" element={<ProfilePage />} />
           <Route
             path="/oredrList"
             element={

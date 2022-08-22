@@ -66,14 +66,26 @@ const DefaultHeader = () => {
             <Link className="navbar-brand" to="/per">
               <img className="heder-logo2" src={per}></img>
             </Link>
-            
-            <Link className="navbar-brand" to="/profil">
+            {isAuth ? (
+              <Link className="navbar-brand" to="/profile">
                 <img className="heder-logo2" src={prof}></img>
               </Link>
+            ) : (
+              <Link className="navbar-brand" to="/login">
+                <img className="heder-logo2" src={prof}></img>
+              </Link>
+            )}
 
-            <Link className="navbar-brand" to="/like">
-              <img className="heder-logo2" src={h}></img>
-            </Link>
+            {isAuth ? (
+              <Link className="navbar-brand" to="/like">
+                <img className="heder-logo2" src={h}></img>
+              </Link>
+            ) : (
+              <Link className="navbar-brand" to="/login">
+                <img className="heder-logo2" src={h}></img>
+              </Link>
+            )}
+
           </div>
         </div>
         <div className="d-grid gap-2">
@@ -94,13 +106,13 @@ const DefaultHeader = () => {
             <img className="heder-logo" src={menu}></img>
           </Link>
           {isAuth ? (<Link
-              className="navbar-brand"
-              to="/"
-              onClick={() => {
-                LogoutUser();
-              }}
-            ><FontAwesomeIcon className="heder-logo2" icon={faSignOutAlt} size={"1x"} /></Link>
-            ) : (<div/>)}
+            className="navbar-brand"
+            to="/"
+            onClick={() => {
+              LogoutUser();
+            }}
+          ><FontAwesomeIcon className="heder-logo2" icon={faSignOutAlt} size={"1x"} /></Link>
+          ) : (<div />)}
         </div>
       </div>
     </nav>

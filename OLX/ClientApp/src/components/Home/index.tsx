@@ -24,7 +24,7 @@ const HomePage = () => {
   const [advDetails, setAdvDetails] = useState<any>(null);
   const { list } = useTypedSelector((store) => store.adv);
   const { vipList } = useTypedSelector((store) => store.adv);
-  const { AdvAll, VipAdv, VipAdvBack } = useActions();
+  const { AdvAll, VipAdv, VipAdvBack, CartAdd} = useActions();
   useEffect(() => {
     try {
       AdvAll();
@@ -34,6 +34,13 @@ const HomePage = () => {
     }
   }, []);
 
+  const addToLike = (id: number) => {
+    try {
+      CartAdd(id);
+    } catch (error) {
+      console.log("Server error global");
+    }
+  };
   const onNextVipHandler = () => {
     try {
       VipAdv();
@@ -93,8 +100,8 @@ const HomePage = () => {
                                 <a href="#" className="btn " >
                                   <img src={card_plas} alt="+"></img>
                                 </a>
-                                <a href="#" className="btn ">
-                                  <img src={card_h} alt="like"></img>
+                                <a href="#" className="btn">
+                                  <img src={card_h} alt="like" onClick={() => addToLike(advDetails.id)}></img>
                                 </a>
                               </div>
                             </div>
@@ -178,8 +185,8 @@ const HomePage = () => {
                                         <a href="#" className="btn " >
                                           <img src={card_plas} alt="+"></img>
                                         </a>
-                                        <a href="#" className="btn ">
-                                          <img src={card_h} alt="like"></img>
+                                        <a className="btn">
+                                          <img src={card_h} alt="like" onClick={() => addToLike(adv.id)}></img>
                                         </a>
                                       </div>
                                     </div>
@@ -226,7 +233,7 @@ const HomePage = () => {
                             <img src={card_plas} alt="+"></img>
                           </a>
                           <a href="#" className="btn ">
-                            <img src={card_h} alt="like"></img>
+                            <img src={card_h} alt="like" onClick={() => addToLike(adv.id)}></img>
                           </a></div></div>
                     </div>
                   </div>

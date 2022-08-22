@@ -14,8 +14,14 @@ namespace OLX.Entities
         [StringLength(4000)]
         public string Description { get; set; }
         [StringLength(255)]
-        public string Category { get; set; }
-        [StringLength(255)]
-        public string Contacts { get; set; }
+
+        [ForeignKey("Category")]
+        public int CategoryId { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+
+        public virtual DbUser? User { get; set; }
+        public virtual CategoryEntity? Category { get; set; }
     }
 }

@@ -35,6 +35,7 @@ namespace OLX.Controllers
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
         private readonly IOptions<GoogleAuthSettings> _googleAuthSettings;
+        public static string _userName;
 
         public AccountController(EFDbContext context,
          UserManager<DbUser> userManager,
@@ -183,7 +184,7 @@ namespace OLX.Controllers
             try
             {
                 //Thread.Sleep(2000);
-                string userName = User.Claims.FirstOrDefault().Value;
+                string userName = _userName;
                 var user = await _userManager.FindByNameAsync(userName);
                 var model = _mapper.Map<ProfileViewModel>(user);
 
@@ -224,9 +225,10 @@ namespace OLX.Controllers
             var roles = _userManager.GetRolesAsync(user).Result;
             var claims = new List<Claim>()
             {
-                new Claim("id", user.Id.ToString()),
+                //new Claim("id", user.Id.ToString()),
                 new Claim("name", user.UserName)
             };
+            _userName = user.UserName;
 
             foreach (var role in roles)
             {
