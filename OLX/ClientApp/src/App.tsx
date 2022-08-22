@@ -13,7 +13,8 @@ import Home from "./components/Home";
 import DefaultLayout from "./components/containers/DefaultLayout";
 import ProfilePage from "./components/UserData/Profile";
 import NoMatch from "./components/NoMatch";
-
+//import Dialogs from "./components/dialog/Dialogs";
+import Chat from "./components/dialog/chat";
 
 //Import lazyLoading
 
@@ -21,16 +22,13 @@ const Register = lazy(() => import("./components/auth/Register/index"));
 const Login = lazy(() => import("./components/auth/Login/index"));
 const Like = lazy(() => import("./components/Like/index"));
 const Profil = lazy(() => import("./components/Profil/profil"));
-const OrderList = lazy(() => import("./components/UserData/UserOrders"))
-
-
-
+const OrderList = lazy(() => import("./components/UserData/UserOrders"));
+//const Dialog = lazy(() => import("./components/dialog/Dialogs"));
 
 function App() {
   // const { cartIsShow } = useTypedSelector((store) => store.cart);
 
   // const { downloadCartData } = useActions();
-
 
   return (
     <>
@@ -82,6 +80,19 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="/chat" element={<Chat/>} />
+          {/* 
+          
+          dialog={props.appState.dialog}
+
+          <Route
+            path="/dialog"
+            element={
+              <Suspense fallback={null}>
+                <Dialogs />
+              </Suspense>
+            }
+          /> */}
 
           {/* RecoverPasswordRoutes */}
 

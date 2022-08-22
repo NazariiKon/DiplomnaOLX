@@ -13,6 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { setAuthUserByToken } from "./components/auth/Login/action";
+//import state from "./components/redux/state";
 
 
 let token = localStorage.token;
