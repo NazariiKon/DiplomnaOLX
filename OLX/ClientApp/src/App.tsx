@@ -13,7 +13,6 @@ import Home from "./components/Home";
 import DefaultLayout from "./components/containers/DefaultLayout";
 import ProfilePage from "./components/UserData/Profile";
 import NoMatch from "./components/NoMatch";
-//import Dialogs from "./components/dialog/Dialogs";
 import Chat from "./components/dialog/chat";
 
 //Import lazyLoading
@@ -21,22 +20,17 @@ import Chat from "./components/dialog/chat";
 const Register = lazy(() => import("./components/auth/Register/index"));
 const Login = lazy(() => import("./components/auth/Login/index"));
 const Like = lazy(() => import("./components/Like/index"));
-<<<<<<< HEAD
-const Profil = lazy(() => import("./components/Profil/profil"));
-const OrderList = lazy(() => import("./components/UserData/UserOrders"));
-//const Dialog = lazy(() => import("./components/dialog/Dialogs"));
-=======
 const OrderList = lazy(() => import("./components/UserData/UserOrders"))
 
 
 
->>>>>>> b8a55f3c86e4cbd44ea1f0f5981b59410cf07223
 
 function App() {
   // const { cartIsShow } = useTypedSelector((store) => store.cart);
 
   // const { downloadCartData } = useActions();
 
+  
   return (
     <>
       {/* {cartIsShow && <Cart />} */}
