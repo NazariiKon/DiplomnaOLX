@@ -1,20 +1,24 @@
 import { Helmet } from "react-helmet";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Menu from "../menu/menu";
 import './style.css'
 import card_plas from "../../images/icon/plas_to.png";
 import card_h from "../../images/icon/h_add.png";
+import noImage from "../../images/icon/Frame.png";
 import Search from "../Search/search";
 
 const LoginPage: React.FC = () => {
     const { likeList } = useTypedSelector((store) => store.like);
+    const [active, setActive] = useState(true);
     const { CartAll, CartDelete } = useActions();
     useEffect(() => {
         try {
             CartAll();
-            console.log(likeList);
+            if (likeList.length == 0) {
+                setActive(false);
+            }
         } catch (error) {
             console.log("Server error global");
         }
@@ -40,14 +44,16 @@ const LoginPage: React.FC = () => {
                 <div className="col-9">
                     <Search />
                     <div>
-                        <p className="title mx-auto mt-5">Обрані оголошення</p>
-                        <div className="mt-5">
+                        <p className="title mx-auto mt-5 text-center">Обрані оголошення</p>
+                        <div className="mt-3">
                             <code className="text-rec mx-5">Обрані оголошення</code>
                             <code className="text-rec-gray mx-5">Недавно переглянуті</code>
                         </div>
                     </div>
                     <div className="row px-3">
-                        {
+                        { active  ?
+                        ( 
+                            <div>{
                             likeList.map((adv: any, index: any) => {
                                 return (
                                     <div className="card col-4">
@@ -73,6 +79,15 @@ const LoginPage: React.FC = () => {
                                     </div>
                                 );
                             })
+                        }
+                        </div>) 
+                        : 
+                        (
+                            <div className="text-center mt-5">
+                                <h1 className="text-nonimage mt-5">Немає обраних оголошень</h1>
+                                <img src={noImage}></img>
+                            </div>
+                        )
                         }
                     </div>
                 </div>

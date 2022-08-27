@@ -1,4 +1,4 @@
-import { ADV_ALL, ADV_VIP_NEXT, ADV_VIP_BACK} from "./types";
+import { ADV_ALL, ADV_VIP_NEXT, ADV_VIP_BACK, GET_ADV_BY_CATEGORY, GET_ADV_BY_SUBCATEGORY} from "./types";
 
 const initialState = {
     list: [],
@@ -26,6 +26,19 @@ export const advReducer = (state=initialState, action) => {
             return {
                 ...state,
                 vipList: payload
+            };
+        }
+        case GET_ADV_BY_CATEGORY: {
+            return {
+                ...state,
+                list: payload
+            };
+        }
+
+        case GET_ADV_BY_SUBCATEGORY: {
+            return {
+                ...state,
+                list: payload
             };
         }
         

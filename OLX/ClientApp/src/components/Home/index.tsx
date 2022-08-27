@@ -10,6 +10,7 @@ import right from "../../images/icon/right.png";
 import girl from "../../images/girl.png";
 import box from "../../images/box.png";
 import union from "../../images/Union.png";
+import vector from "../../images/icon/Vector.png";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -22,9 +23,13 @@ import Search from "../Search/search";
 const HomePage = () => {
   //  const {list} = useSelector(state => state.adv);
   const [advDetails, setAdvDetails] = useState<any>(null);
-  const { list } = useTypedSelector((store) => store.adv);
-  const { vipList } = useTypedSelector((store) => store.adv);
-  const { AdvAll, VipAdv, VipAdvBack, CartAdd} = useActions();
+  const { list, vipList } = useTypedSelector((store) => store.adv);
+  const { subcategories } = useTypedSelector((store) => store.category);
+  const [subcategory, setSubcategory] = useState<any>(null);
+  const [title, setTitle] = useState<string>();
+  const [active2, setActive2] = useState(null);
+  const { AdvAll, VipAdv, VipAdvBack, CartAdd, Subcategories, GetAdvByCategory, GetAdvBySubCategory } = useActions();
+
   useEffect(() => {
     try {
       AdvAll();
@@ -60,6 +65,21 @@ const HomePage = () => {
     console.log(adv);
   }
 
+  const onSubcategoriesHandler = (id: number, title: any) => {
+    setActive2(title);
+    GetAdvBySubCategory(id);
+  }
+
+  const updateData = (id: number, title: string) => {
+    try {
+      setTitle(title);
+      Subcategories(id);
+      GetAdvByCategory(id);
+      setSubcategory(subcategories);
+    } catch (error) {
+      console.log("Server error global");
+    }
+  }
   return (
     <>
       <Helmet>
@@ -67,9 +87,9 @@ const HomePage = () => {
       </Helmet>
 
       <div className="">
-        <div className="row mx-2">
+        <div className="row px-2">
           <div className="col-3 rounded-3 border-warning pl-5">
-            <Menu />
+            <Menu updateData={updateData} />
           </div>
           <div className="col-9">
             <div className="row">
@@ -156,15 +176,41 @@ const HomePage = () => {
                     </div>
                   ) : (
                     <div>
-                      <a>
-                        <img className="baner" src={logo} alt="baner"></img>
-                      </a>
+                      {subcategory ? (
+                        <div className="categoryPanel pt-4 px-3">
+                          <p className="categoryTitle">Переглянути всі оголошення в {title}</p>
+                          <hr className="categoryLine" />
+                          <div className="row categoryItemsPanel pt-4 px-1">
+                            {
+                              subcategories.map((sub: any, index: any) => {
+                                return (
+                                  <div className="categoryItem col-3 row">
+                                    <a
+                                      href={`#${sub.title}`}
+                                      className={`categoryText col-8 nav-link ${active2 == sub.title && 'active'}`}
+                                      onClick={() => onSubcategoriesHandler(sub.id, sub.title)}
+                                    >{sub.title}</a>
+                                    <div className="col-4">
+                                      <img className="categoryImg" src={vector}></img>
+                                    </div>
+                                  </div>
+                                );
+                              })
+                            }
+                          </div>
+
+                        </div>
+                      ) : (
+                        <a>
+                          <img className="baner" src={logo} alt="baner"></img>
+                        </a>
+                      )}
+
                       <div className="my-4 d-flex">
                         <code className="text_karesel">VIP-оголошення</code>
                         <a className="ml-auto p-2" role="button" onClick={onBackVipHandler}><img src={left}></img></a>
                         <a className="ml-auto p-2" role="button" onClick={onNextVipHandler}><img src={right}></img></a>
                       </div>
-
 
                       <div className="row">
                         {

@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace OLX.Controllers
 {
-   
+
     [Route("api/[controller]")]
     [ApiController]
     public class AdvertisementController : Controller
@@ -61,7 +61,7 @@ namespace OLX.Controllers
         public IActionResult VipIndex() // вертає ліст продуктів з затримкой 2000
         {
             count += 4;
-            if (count > _context.Advertisement.Count()-4) count = 0;
+            if (count > _context.Advertisement.Count() - 4) count = 0;
             //Thread.Sleep(2000); 
             var list = _context.Advertisement
                     .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
@@ -75,7 +75,7 @@ namespace OLX.Controllers
         public IActionResult VipIndexBack() // вертає ліст продуктів з затримкой 2000
         {
             count -= 4;
-            if (count < 0) count = _context.Advertisement.Count()-4;
+            if (count < 0) count = _context.Advertisement.Count() - 4;
             //Thread.Sleep(2000); 
             var list = _context.Advertisement
                     .Select(x => _mapper.Map<AdvertisementItemViewModel>(x))
@@ -104,6 +104,40 @@ namespace OLX.Controllers
             return Ok();
         }
 
+        [Route("getAdvByCategory/{id}")]
+        [HttpGet]
+        public IActionResult GetAdvByCategory(int id)
+        {
+            var list = _context.Advertisement
+            .Where(x => x.Category.ParentId == id);
+
+            list.Select(x => _mapper.Map<AdvertisementItemViewModel>(x)).ToList();
+            return Ok(list);
+        }
+
+        [Route("getAdvBySubCategory/{id}")]
+        [HttpGet]
+        public IActionResult GetAdvBySubCategory(int id)
+        {
+            var list = _context.Advertisement
+            .Where(x => x.CategoryId == id);
+                
+            list.Select(x => _mapper.Map<AdvertisementItemViewModel>(x)).ToList();
+            return Ok(list);
+        }
+
+        [Route("getAdvByUser")]
+        [HttpGet]
+        public IActionResult GetAdvByUser()
+        {
+            var list = _context.Advertisement
+            .Where(x => x.User.UserName == AccountController._userName);
+
+            list.Select(x => _mapper.Map<AdvertisementItemViewModel>(x)).ToList();
+            return Ok(list);
+        }
+
+        [Route("edit")]
         [HttpPost]
         public IActionResult Edit(EditAdvertisementViewModel model)
         {

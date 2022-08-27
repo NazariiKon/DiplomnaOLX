@@ -13,13 +13,35 @@ import ring from "../../images/icon/ring.png";
 import pazle from "../../images/icon/pazle.png";
 import line from "../../images/icon/line_menu.png";
 import "./menu.css";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useEffect, useState } from "react";
 
 
-const Menu = () => {
+const Menu = (updateData: any) => {
+  const { categories, subcategories } = useTypedSelector((store) => store.category);
+  const [active, setActive] = useState(null);
+  const { CategoriesAll, Subcategories } = useActions();
+  useEffect(() => {
+    try {
+      CategoriesAll();
+    } catch (error) {
+      console.log("Server error global");
+    }
+  }, []);
+
+  const getSubcategoriesById = (id: number, title: string) => {
+    try {
+      updateData.updateData(id, title);
+    } catch (error) {
+      console.log("Server error global");
+    }
+  }
+
   return (
     <>
       <div className="accordion filter" id="accordionExample">
-        <div className="">
+        <div className="" id="categories">
           <h2 className="accordion-header" id="headingOne">
             <div className="row p-4">
               <div className="col-9">
@@ -48,68 +70,24 @@ const Menu = () => {
           >
             <div className="accordion-body">
               <ul className="nav flex-column px-3">
-                <li className="nav-item">
-                  <a
-                    className="nav-link active kategory "
-                    aria-current="page"
-                    href="#"
-                  >
-                    <img src={works} className="icon-menu"></img>
-                    Робота
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link kategory "
-                    aria-current="page"
-                    href="#"
-                  >
-                    <img src={jobs} className="icon-menu"></img>
-                    Тварини
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory" href="#">
-                    <img src={car} className="icon-menu"></img>
-                    Авто
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory " href="#">
-                    <img src={hous} className="icon-menu"></img>
-                    Нерухомість
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory" href="#">
-                    <img src={mouse} className="icon-menu"></img>
-                    Електроніка
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory" href="#">
-                    <img src={shirt} className="icon-menu"></img>
-                    Мода та стиль
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory" href="#">
-                    <img src={coffee} className="icon-menu"></img>
-                    Хоббі, відпочинок та спорт
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory" href="#">
-                    <img src={ring} className="icon-menu"></img>
-                    Бізнес та послуги
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link kategory" href="#">
-                    <img src={pazle} className="icon-menu"></img>
-                    Дитячий світ
-                  </a>
-                </li>
+                {
+                  categories.map((category: any, index: any) => {
+                    return (
+                      <li key={index} className="nav-item">
+                        <a
+                          aria-current="page"
+                          // onClick={() => getSubcategoriesById(category.id)}
+                          href={`#${category.title}`}
+                          className={`kategory nav-link ${active == category.title && 'kategory active'}`}
+                          onClick={() => { setActive(category.title); getSubcategoriesById(category.id, category.title); }}
+                        >
+                          <img src={"/images/" + category.image} className="icon-menu"></img>
+                          {category.title}
+                        </a>
+                      </li>
+                    );
+                  })
+                }
               </ul>
             </div>
           </div>
@@ -195,7 +173,7 @@ const Menu = () => {
           >
             <div className="accordion-body">body_content</div>
           </div>
-        </div>  
+        </div>
         <div className="">
           <h2 className="accordion-header" id="headingFour">
             <div className="row p-4">
@@ -308,5 +286,7 @@ const Menu = () => {
       </div>
     </>
   );
+
 };
 export default Menu;
+

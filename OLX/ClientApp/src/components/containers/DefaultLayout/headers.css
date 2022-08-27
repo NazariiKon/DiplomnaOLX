@@ -7,6 +7,7 @@
   padding-top: 10px;
   background-color: #f7f7f6;
   background: #ffffff;
+  overflow-x:hidden;
 }
 
 .defaultPositions {

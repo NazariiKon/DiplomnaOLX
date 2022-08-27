@@ -9,12 +9,12 @@ import card_h from "../../../images/icon/h_to.png";
 import './index.css'
 
 const ProfilePage = () => {
+  const { userList } = useTypedSelector((store) => store.profile);
   const { GetProfileData } = useActions();
-  const { vipList } = useTypedSelector((store) => store.adv);
-  const { VipAdv, CartAdd} = useActions();
+  const { CartAdd, GetAdvByUser} = useActions();
   useEffect(() => {
     try {
-      VipAdv();
+      GetAdvByUser();
     } catch (error) {
       console.log("Server error global");
     }
@@ -74,7 +74,7 @@ const ProfilePage = () => {
             </div>
             <div className="row mt-5 mx-4">
                         {
-                          vipList.map((adv: any, index: any) => {
+                          userList.map((adv: any, index: any) => {
                             return (
                               <div className="card-vip col-2 mx-3">
                                 <div className="row">

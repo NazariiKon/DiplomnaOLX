@@ -2,6 +2,7 @@ export enum ProfileActionTypes {
   PROFILE = "PROFILE",
   PROFILE_SUCCESS = "PROFILE_SUCCESS",
   PROFILE_ERROR = "PROFILE_ERROR",
+  GET_ADV_BY_USER = "GET_ADV_BY_USER",
 }
 
 export interface IProfile {
@@ -25,7 +26,13 @@ export interface LoginAuthErrorAction {
   payload: string;
 }
 
+export interface GetAdvByUser {
+  type: ProfileActionTypes.GET_ADV_BY_USER;
+  payload: any;
+}
+
 export type ProfileActions =
   | ProfileAction
   | LoginAuthSuccessAction
-  | LoginAuthErrorAction;
+  | LoginAuthErrorAction
+  | GetAdvByUser;

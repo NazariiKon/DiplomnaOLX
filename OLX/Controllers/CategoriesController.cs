@@ -35,6 +35,7 @@ namespace OLX.Controllers
             _env = env;
             _configuration = configuration;
         }
+
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> Add([FromBody] CategoryAddViewModel model)
@@ -91,12 +92,13 @@ namespace OLX.Controllers
         [AllowAnonymous]
         [Route("list")]
         public async Task<IActionResult> List()
-        {
+        {   
             try
             {
                 //Thread.Sleep(2000);
-                var model = await _context.Categories
-                    .Select(x => _mapper.Map<CategoryItemViewModel>(x))
+                var model = _context.Categories
+                    .Where(x => x.Image != null);
+                await model.Select(x => _mapper.Map<CategoryItemViewModel>(x))
                     .ToListAsync();
                 return Ok(model);
             }
@@ -107,6 +109,18 @@ namespace OLX.Controllers
                     invalid = ex.Message
                 });
             }
+        }
+
+        [Route("getSubcategories/{id}")]
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetSubCategoriesByIdAsync(int id)
+        {
+            var model = _context.Categories
+                .Where(x => x.ParentId == id);
+            await model.Select(x => _mapper.Map<CategoryItemViewModel>(x))
+                .ToListAsync();
+            return Ok(model);
         }
 
         //[HttpGet]
