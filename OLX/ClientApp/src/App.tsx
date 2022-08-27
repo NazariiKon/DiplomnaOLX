@@ -13,7 +13,7 @@ import Home from "./components/Home";
 import DefaultLayout from "./components/containers/DefaultLayout";
 import ProfilePage from "./components/UserData/Profile";
 import NoMatch from "./components/NoMatch";
-
+import Chat from "./components/dialog/chat";
 
 //Import lazyLoading
 
@@ -30,7 +30,7 @@ function App() {
 
   // const { downloadCartData } = useActions();
 
-
+  
   return (
     <>
       {/* {cartIsShow && <Cart />} */}
@@ -74,6 +74,19 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="/chat" element={<Chat/>} />
+          {/* 
+          
+          dialog={props.appState.dialog}
+
+          <Route
+            path="/dialog"
+            element={
+              <Suspense fallback={null}>
+                <Dialogs />
+              </Suspense>
+            }
+          /> */}
 
           {/* RecoverPasswordRoutes */}
 

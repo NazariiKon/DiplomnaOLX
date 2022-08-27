@@ -90,7 +90,7 @@ const DefaultHeader = () => {
         </div>
         <div className="d-grid gap-2">
           <div className="container nav-brand">
-            <Link className="navbar-brand" to="/#">
+            <Link className="navbar-brand" to="/chat">
               <img src={ukr}></img>
             </Link>
             <Link className="navbar-brand" to="/#">
