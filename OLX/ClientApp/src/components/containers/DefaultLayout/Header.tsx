@@ -59,7 +59,7 @@ const DefaultHeader = () => {
               <img className="heder-logo " src={house}></img>
             </Link>
 
-            <Link className="navbar-brand" to="/shop">
+            <Link className="navbar-brand" to="/order">
               <img className="heder-logo2" src={shop}></img>
             </Link>
 

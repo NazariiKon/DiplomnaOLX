@@ -117,6 +117,15 @@
   color: #474746;
 }
 
+.categoryTitleName {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #F0AB3B;
+}
+
 .categoryLine {
   height: 0px;
   border: 1px solid #999999;
@@ -132,20 +141,14 @@
 }
 
 .categoryItem {
-  /* width: 178px;
-  height: 21px;
-  left: 669px;
-  top: 293px; */
+  height: 80px;
 }
 
 .categoryImg {
   /* margin-left: 51px; */
 }
 
-.categoryItemsPanel {
-  height: 390px;
-  width:1230px;
-}
+.categoryItemsPanel {}
 
 .categoryText {
   font-family: 'Montserrat';

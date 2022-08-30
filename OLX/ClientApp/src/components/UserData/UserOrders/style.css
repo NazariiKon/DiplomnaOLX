@@ -1,0 +1,75 @@
+.container-panel {
+    /* white */
+
+    background: #F9F9F9;
+    /* drop_dhop_gray */
+
+    box-shadow: 0px 2px 5px rgba(153, 153, 153, 0.5);
+    border-radius: 10px;
+}
+
+.text-table {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #19191A;
+}
+
+.table-image {
+    max-height: 137px;
+    width: 200px;
+
+    filter: drop-shadow(0px 2px 5px rgba(153, 153, 153, 0.5));
+    border-radius: 30px;
+}
+
+.table-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #474746;
+}
+
+.table-desc {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #999999;
+}
+
+.table-price {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #CD5091;
+}
+
+.table-line {
+    border: 1px solid #F0AB3B;
+}
+
+.table-info {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #474746;
+}
+
+.table-priceInfo {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #CD5091;
+}
