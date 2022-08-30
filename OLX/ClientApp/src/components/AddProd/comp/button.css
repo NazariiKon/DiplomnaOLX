@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+.button:link,
+.button:visited {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 150px;
+    gap: 10px;
+
+    position: absolute;
+    width: 440px;
+    height: 49px;
+    left: 690px;
+    top: 2000px;
+
+    /* yellow */
+
+    background: #F0AB3B;
+    border-radius: 20px;
+    text-decoration: none;
+    /*display: inline-block;*/
+    /*position: relative;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*padding: 1px 20px;*/
+    /*gap: 10px;*/
+    /*margin-left: 250px;*/
+    /*margin-top: 2px;*/
+
+    /*max-width: 320px;*/
+    /*max-height: 40px;*/
+    /*width: 320px;*/
+    /*height: 40px;*/
+    /*left: 300px;*/
+    /*top: -180px;*/
+
+    /*z-index: 1;*/
+    /*!* pink *!*/
+
+    /*background: #F0AB3B;*/
+    /*border-radius: 20px;*/
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    /*!* identical to box height *!*/
+
+
+    align-items: center;
+    text-align: center;
+
+    /* white */
+
+    color: #F9F9F9;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-darkyellow {
+    background-color: #bd862d;
+    color: #777;
+}
+
+.button::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.button-white::after {
+    background-color: #fff;
+}
+
+.button:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.button-animated {
+    animation: moveInBottom 1s ease-out;
+    animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
