@@ -5,7 +5,6 @@ namespace OLX.Models
     public class OrderItemAddViewModel
     {
         public int ProductId { get; set; }
-        public int Quantity { get; set; }
         public decimal BuyPrice { get; set; }
     }
 
@@ -28,9 +27,10 @@ namespace OLX.Models
 
     public class OrderItemViewModel
     {
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
+        public int AdvId { get; set; }
+        public string AdvName { get; set; }
         public decimal BuyPrice { get; set; }
+        public string AdvImage { get; set; }
     }
 
     public class OrderViewModel

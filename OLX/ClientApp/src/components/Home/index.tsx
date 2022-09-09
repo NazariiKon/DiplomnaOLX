@@ -28,7 +28,7 @@ const HomePage = () => {
   const [subcategory, setSubcategory] = useState<any>(null);
   const [title, setTitle] = useState<string>();
   const [active2, setActive2] = useState(null);
-  const { AdvAll, VipAdv, VipAdvBack, CartAdd, Subcategories, GetAdvByCategory, GetAdvBySubCategory } = useActions();
+  const { AdvAll, VipAdv, VipAdvBack, CartAdd, Subcategories, GetAdvByCategory, GetAdvBySubCategory, BasketAdd } = useActions();
 
   useEffect(() => {
     try {
@@ -42,6 +42,14 @@ const HomePage = () => {
   const addToLike = (id: number) => {
     try {
       CartAdd(id);
+    } catch (error) {
+      console.log("Server error global");
+    }
+  };
+
+  const addToBasket = (id: number) => {
+    try {
+      BasketAdd(id);
     } catch (error) {
       console.log("Server error global");
     }
@@ -118,7 +126,7 @@ const HomePage = () => {
                               </div>
                               <div className="col-2">
                                 <a href="#" className="btn " >
-                                  <img src={card_plas} alt="+"></img>
+                                  <img src={card_plas} alt="+" onClick={() => addToBasket(advDetails.id)}></img>
                                 </a>
                                 <a href="#" className="btn">
                                   <img src={card_h} alt="like" onClick={() => addToLike(advDetails.id)}></img>
@@ -230,7 +238,7 @@ const HomePage = () => {
                                       </div>
                                       <div className=" col-3 ">
                                         <a href="#" className="btn " >
-                                          <img src={card_plas} alt="+"></img>
+                                          <img src={card_plas} alt="+" onClick={() => addToBasket(adv.id)}></img>
                                         </a>
                                         <a className="btn">
                                           <img src={card_h} alt="like" onClick={() => addToLike(adv.id)}></img>

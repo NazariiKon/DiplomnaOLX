@@ -59,9 +59,15 @@ const DefaultHeader = () => {
               <img className="heder-logo " src={house}></img>
             </Link>
 
-            <Link className="navbar-brand" to="/order">
-              <img className="heder-logo2" src={shop}></img>
-            </Link>
+            {isAuth ? (
+              <Link className="navbar-brand" to="/order">
+                <img className="heder-logo2" src={shop}></img>
+              </Link>
+            ) : (
+              <Link className="navbar-brand" to="/login">
+                <img className="heder-logo2" src={shop}></img>
+              </Link>
+            )}
 
             <Link className="navbar-brand" to="/per">
               <img className="heder-logo2" src={per}></img>
