@@ -4,7 +4,7 @@ import './comp/checkbox.css';
 import './comp/category_cards.css';
 import './comp/load-btn.css';
 import  './comp/button.css';
-
+import "bootstrap";
 
 
 const App = () =>{
@@ -25,16 +25,18 @@ const App = () =>{
 
 <body className='body' >
 
-<pre>  </pre>
-<pre>  </pre>
-<pre>  </pre>
-<pre>  </pre>
-<pre>  </pre>
-<pre>  </pre>
-<pre>  </pre>
-<div className='text-box'>
-    <a href="#"  className='load-pictures-button load-pictures-button-darkpurple load-pictures-button-animated ' ><img src="https://cdn.discordapp.com/attachments/994181547840241676/996142318631534622/Upload_to_the_Cloud.png"/>    Завантажте фотографії</a>
 
+<pre>  </pre>
+<pre>  </pre>
+<pre>  </pre>
+<pre>  </pre>
+<pre>  </pre>
+<pre>  </pre>
+<pre>  </pre>
+<div className='container text-center '>
+<div className='text-box center-top'  >
+    <a href="#"  className='load-pictures-button load-pictures-button-darkpurple load-pictures-button-animated ' ><img src="https://cdn.discordapp.com/attachments/994181547840241676/996142318631534622/Upload_to_the_Cloud.png"/>    Завантажте фотографії</a>
+</div>
 </div>
 <label className='label-for-main-text' >Опишіть вашу річ</label>
 <pre>  </pre>
@@ -69,7 +71,7 @@ const App = () =>{
 </div>
 <pre>  </pre>
 
-<div className='card-position'>
+<div className='card-position text-center'>
     <a href='#target1' className='card' >
         <img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996143524896592004/Top_Hat.png" />
         <div className='card-text'><h3 id='target1' className='card-text'>Чоловікам</h3>
@@ -91,56 +93,20 @@ const App = () =>{
         <div className='card-text'><h3 id='target4' className='card-text'>Для дому</h3>
         </div>
     </a>
-    <a href='#target5' className='card' >
+    <a href='#target5' className='card'>
         <img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147591769239552/Dryclean_Short_Cycle.png" />
         <div className='card-text'><h3 id='target5' className='card-text'>Краса та спорт</h3>
         </div>
     </a>
 
-    {/*<div className='card' >*/}
-    {/*    <img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147522756169808/Women_Shoe_Side_View.png" />*/}
-    {/*    <div className='card-text'><a href='#target2' id='target2' className='card-text'>Жінкам</a>*/}
-    {/*    </div>*/}
-    {/*</div>*/}
-    {/*<div className='card' >*/}
-    {/*    <img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147555735961652/Baby_Footprint.png" />*/}
-    {/*    <div className='card-text'><a href='#target3' id='target3' className='card-text'>Дітям</a>*/}
-    {/*    </div>*/}
-    {/*</div>*/}
-    {/*<div className='card' >*/}
-    {/*    <img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147575986081943/Armchair.png" />*/}
-    {/*    <div className='card-text'><a href='#target4' id='target4' className='card-text'>Для дому</a>*/}
-    {/*    </div>*/}
-    {/*</div>*/}
-    {/*<div className='card' >*/}
-    {/*    <img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147591769239552/Dryclean_Short_Cycle.png" />*/}
-    {/*    <div className='card-text'><a href='#target5' id='target5' className='card-text'>Краса та спорт</a>*/}
-    {/*    </div>*/}
-    {/*</div>*/}
+
 
 
 </div>
 
 
 
-{/*<div className='card-position'>*/}
-{/*<div>*/}
-{/*        <a href='#target1' id='target1' className='card card-text '><img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996143524896592004/Top_Hat.png"/>Чоловікам</a>*/}
-{/*</div>*/}
 
-{/*<div>*/}
-{/*    <a href='#target2' id='target2' className='card card-text '><img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147522756169808/Women_Shoe_Side_View.png"/>Жінкам</a>*/}
-{/*</div>*/}
-{/*<div >*/}
-{/*    <a href='#target3' id='target3' className='card card-text '><img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147555735961652/Baby_Footprint.png"/>Дітям</a>*/}
-{/*</div>*/}
-{/*<div >*/}
-{/*    <a href='#target4' id='target4' className='card card-text '><img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147575986081943/Armchair.png"/>Для дому</a>*/}
-{/*</div>*/}
-{/*<div >*/}
-{/*    <a href='#target5' id='target5' className='card card-text '><img className='card-picture' src="https://cdn.discordapp.com/attachments/994181547840241676/996147591769239552/Dryclean_Short_Cycle.png"/>Краса та спорт</a>*/}
-{/*</div>*/}
-{/*</div>*/}
 <pre>  </pre>
 
 <label className='label-for-text' >Колір</label>
@@ -172,8 +138,8 @@ const App = () =>{
 <pre>  </pre>
 <pre>  </pre>
 <pre>  </pre>
-<div className='text-box'>
-    <a href="#"  className='button button-darkyellow button-animated '>Додати річ</a>
+<div className='text-box text-center'>
+    <a href="#"  className='button button-darkyellow button-animated'>Додати річ</a>
 
 </div>
 

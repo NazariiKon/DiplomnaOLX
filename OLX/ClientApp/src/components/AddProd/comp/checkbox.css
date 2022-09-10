@@ -14,7 +14,7 @@
   padding: 15px 55px;
   gap: 830px;
 
-  width: 1447px;
+  width: 95%;
   height: 75px;
 
   /* white */
@@ -47,7 +47,7 @@
 
 input[type="checkbox"] {
   position: relative;
-  left: 50px ;
+  left: 380px;
   width: 45px;
   height: 20px;
   -webkit-appearance: none;

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 .button:link,
 .button:visited {
-
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -13,7 +12,7 @@
     width: 440px;
     height: 49px;
     left: 690px;
-    top: 2000px;
+    top: 1900px;
 
     /* yellow */
 
