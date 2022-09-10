@@ -1,23 +1,32 @@
-import { GetOrdersActions, GetOrdersActionTypes, Order } from './types';
-
-
-import { Dispatch } from "react";
 import http from "../../../http_common";
+import { Dispatch } from "react";
+import { BASKET_ALL } from "../types";
 
-const GetOrdersList = () => async (dispatch: Dispatch<GetOrdersActions>) => {
-  try {
-    dispatch({ type: GetOrdersActionTypes.GET_ORDERS });
-	const response = await http.get<Order[]>("api/Orders/user/list");
-	const { data } = response;
-    dispatch({
-      type: GetOrdersActionTypes.GET_ORDERS_SUCCESS,
-      payload:  data ,
-    });
-  } catch (error: any) {
-    dispatch({
-      type: GetOrdersActionTypes.GET_ORDERS_ERROR,
-    });
-  }
-};
+export const BasketAll = () => async (dispatch: any) => {
+    try{
+        const {data} = await http.get("api/Basket/list");
+        dispatch({type: BASKET_ALL, payload: data});
+        return Promise.resolve();
+    }
+    catch(err) {
+        Promise.reject(err);
+    }
+}
 
-export default GetOrdersList;
+export const BasketAdd = (id: number) => async (dispatch: any) => {
+    try {
+      const responce = await http.post<number>(`api/Basket/add/${id}`);
+      return Promise.resolve();
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
+
+export const BasketDelete = (id: number) => async (dispatch: any) => {
+    try {
+      const responce = await http.delete<number>(`api/Basket/delete/${id}`);
+      return Promise.resolve();
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };

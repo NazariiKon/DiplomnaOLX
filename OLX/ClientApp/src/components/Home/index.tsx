@@ -28,7 +28,7 @@ const HomePage = () => {
   const [subcategory, setSubcategory] = useState<any>(null);
   const [title, setTitle] = useState<string>();
   const [active2, setActive2] = useState(null);
-  const { AdvAll, VipAdv, VipAdvBack, CartAdd, Subcategories, GetAdvByCategory, GetAdvBySubCategory } = useActions();
+  const { AdvAll, VipAdv, VipAdvBack, CartAdd, Subcategories, GetAdvByCategory, GetAdvBySubCategory, BasketAdd } = useActions();
 
   useEffect(() => {
     try {
@@ -42,6 +42,14 @@ const HomePage = () => {
   const addToLike = (id: number) => {
     try {
       CartAdd(id);
+    } catch (error) {
+      console.log("Server error global");
+    }
+  };
+
+  const addToBasket = (id: number) => {
+    try {
+      BasketAdd(id);
     } catch (error) {
       console.log("Server error global");
     }
@@ -118,7 +126,7 @@ const HomePage = () => {
                               </div>
                               <div className="col-2">
                                 <a href="#" className="btn " >
-                                  <img src={card_plas} alt="+"></img>
+                                  <img src={card_plas} alt="+" onClick={() => addToBasket(advDetails.id)}></img>
                                 </a>
                                 <a href="#" className="btn">
                                   <img src={card_h} alt="like" onClick={() => addToLike(advDetails.id)}></img>
@@ -177,22 +185,23 @@ const HomePage = () => {
                   ) : (
                     <div>
                       {subcategory ? (
-                        <div className="categoryPanel pt-4 px-3">
-                          <p className="categoryTitle">Переглянути всі оголошення в {title}</p>
-                          <hr className="categoryLine" />
-                          <div className="row categoryItemsPanel pt-4 px-1">
+                        <div className="categoryPanel pt-4">
+                          <div className="px-3">
+                            <code className="categoryTitle">Переглянути всі оголошення в </code>
+                            <a><code className="categoryTitleName">{title}</code></a>
+                            <img className="mb-1 px-3" src={vector}></img>
+                          </div>
+                          <hr className="categoryLine mx-3" />
+                          <div className="row categoryItemsPanel pt-2 px-1">
                             {
                               subcategories.map((sub: any, index: any) => {
                                 return (
-                                  <div className="categoryItem col-3 row">
+                                  <div className="categoryItem col-3">
                                     <a
                                       href={`#${sub.title}`}
-                                      className={`categoryText col-8 nav-link ${active2 == sub.title && 'active'}`}
+                                      className={`categoryText nav-link ${active2 == sub.title && 'active'}`}
                                       onClick={() => onSubcategoriesHandler(sub.id, sub.title)}
                                     >{sub.title}</a>
-                                    <div className="col-4">
-                                      <img className="categoryImg" src={vector}></img>
-                                    </div>
                                   </div>
                                 );
                               })
@@ -229,7 +238,7 @@ const HomePage = () => {
                                       </div>
                                       <div className=" col-3 ">
                                         <a href="#" className="btn " >
-                                          <img src={card_plas} alt="+"></img>
+                                          <img src={card_plas} alt="+" onClick={() => addToBasket(adv.id)}></img>
                                         </a>
                                         <a className="btn">
                                           <img src={card_h} alt="like" onClick={() => addToLike(adv.id)}></img>

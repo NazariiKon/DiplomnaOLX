@@ -51,12 +51,12 @@ const ProfilePage = () => {
             <div className="row">
               <div className="col-3">
                 <img src={"https://www.pngall.com/wp-content/uploads/12/Avatar-PNG-Image.png"}
-                  className="rounded-circle user" alt="user">
+                  className="rounded-circle user-img" alt="user">
                 </img>
 
               </div>
               <div className="col-9">
-                <div className="inf">
+                <div className="information">
                   <p className="user_name">{email}</p>
                   <div className="user_inf">
                     <p>125 підписників</p>

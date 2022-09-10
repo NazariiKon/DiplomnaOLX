@@ -75,7 +75,7 @@ function App() {
           />
 
           <Route
-            path="/oredrList"
+            path="/order"
             element={
               <Suspense fallback={null}>
                 <OrderList />
