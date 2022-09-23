@@ -19,6 +19,7 @@
 
 .table-image {
     max-height: 137px;
+    width: 200px;
 
     filter: drop-shadow(0px 2px 5px rgba(153, 153, 153, 0.5));
     border-radius: 30px;
@@ -55,10 +56,6 @@
     border: 1px solid #F0AB3B;
 }
 
-.table-lineItem {
-    border: 1px solid #999999;
-}
-
 .table-info {
     font-family: 'Montserrat';
     font-style: normal;
@@ -75,107 +72,4 @@
     font-size: 18px;
     line-height: 22px;
     color: #CD5091;
-}
-
-.table-btn {
-    gap: 10px;
-    height: 48px;
-    background: #F0AB3B;
-    border-radius: 15px;
-    border: 0;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    color: #FFFFFF;
-}
-
-.table-confirmText {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    color: #999999;
-}
-
-.table-priceResultText {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    color: #474746;
-}
-
-.table-priceResult {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    color: #CD5091;
-}
-
-
-.parent {
-    position: relative;
-    /* добавили */
-    min-height: 850px;
-}
-
-.child {
-    position: absolute;
-    /* добавили */
-    bottom: 42px;
-    /* добавили */
-}
-
-.text-order {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 26px;
-    color: #19191A;
-}
-
-.text-order {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 26px;
-    color: #19191A;
-}
-
-.text-order-small {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 21.94px;
-    color: #474746;
-}
-
-.form-check-input[type=radio] {
-    border: 1px solid #EEA942;
-}
-
-select:active,
-select:focus {
-    outline: none
-}
-
-.customSelect {
-    appearance: none;
-    overflow: hidden;
-    background: url('../../../images/icon/selectVector.png') no-repeat right;
-    height: 32px;
-    outline: none
-}
-
-.input-order {
-    height: 64px;
-    border: 1px solid #999999;
-    border-radius: 5px;
 }

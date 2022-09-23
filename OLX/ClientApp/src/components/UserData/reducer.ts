@@ -1,11 +1,10 @@
-import { number } from 'yup';
 import { ProfileActions, ProfileActionTypes } from './Profile/types';
 import { ProfileState } from './types';
-import { GET_ADV_BY_USER, BASKET_ADD, BASKET_ALL} from "./types";
+import { GetOrdersActionTypes, GetOrdersActions } from './UserOrders/types';
+import { GET_ADV_BY_USER } from "./types";
 
 const intialState: ProfileState = {
-  basket: [],
-  cost: 0,
+  orders: [],
   userList: [],
   profile: {
     id: null,
@@ -16,7 +15,7 @@ const intialState: ProfileState = {
   error: "",
 };
 
-export const profileReducer = (state = intialState, action: ProfileActions) => {
+export const profileReducer = (state = intialState, action: ProfileActions | GetOrdersActions) => {
   switch (action.type) {
     case ProfileActionTypes.PROFILE:
       return {
@@ -44,11 +43,23 @@ export const profileReducer = (state = intialState, action: ProfileActions) => {
         loading: false,
         error: action.payload,
       };
-
-    case BASKET_ALL:
+    case GetOrdersActionTypes.GET_ORDERS:
       return {
         ...state,
-        basket: action.payload
+        loading: true,
+      };
+
+    case GetOrdersActionTypes.GET_ORDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        orders: action.payload,
+      };
+
+    case GetOrdersActionTypes.GET_ORDERS_ERROR:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return { ...state };

@@ -3,9 +3,6 @@ export enum ProfileActionTypes {
   PROFILE_SUCCESS = "PROFILE_SUCCESS",
   PROFILE_ERROR = "PROFILE_ERROR",
   GET_ADV_BY_USER = "GET_ADV_BY_USER",
-  BASKET_ALL = "BASKET_ALL",
-  BASKET_ADD = "BASKET_ADD",
-  GET_CITIES = "GET_CITIES"
 }
 
 export interface IProfile {
@@ -34,14 +31,8 @@ export interface GetAdvByUser {
   payload: any;
 }
 
-export interface GetBasket {
-  type: ProfileActionTypes.BASKET_ALL;
-  payload: any;
-}
-
 export type ProfileActions =
   | ProfileAction
   | LoginAuthSuccessAction
   | LoginAuthErrorAction
-  | GetAdvByUser
-  | GetBasket
+  | GetAdvByUser;

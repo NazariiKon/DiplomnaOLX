@@ -1,2 +1,3 @@
 import GetProfileData from './Profile/actions';
-export { GetProfileData };
+import GetOrdersList from "./UserOrders/action"
+export { GetProfileData, GetOrdersList };

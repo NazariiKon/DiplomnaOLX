@@ -12,7 +12,7 @@ import Search from "../Search/search";
 const LoginPage: React.FC = () => {
     const { likeList } = useTypedSelector((store) => store.like);
     const [active, setActive] = useState(true);
-    const { CartAll, CartDelete, BasketAdd } = useActions();
+    const { CartAll, CartDelete } = useActions();
     useEffect(() => {
         try {
             CartAll();
@@ -24,22 +24,13 @@ const LoginPage: React.FC = () => {
         }
     }, []);
 
-    const deleteFromLike = (id: number) => {
+    const deleteFromLike = (id:number) => {
         try {
             CartDelete(id);
         } catch (error) {
             console.log("Server error global");
-        }
+          }
     }
-
-    const addToBasket = (id: number) => {
-        try {
-            BasketAdd(id);
-        } catch (error) {
-            console.log("Server error global");
-        }
-    };
-
     return (
         <>
             <Helmet>
@@ -60,43 +51,43 @@ const LoginPage: React.FC = () => {
                         </div>
                     </div>
                     <div className="row px-3">
-                        {active ?
-                            (
-                                <div>{
-                                    likeList.map((adv: any, index: any) => {
-                                        return (
-                                            <div className="card col-4">
+                        { active  ?
+                        ( 
+                            <div>{
+                            likeList.map((adv: any, index: any) => {
+                                return (
+                                    <div className="card col-4">
+                                        <div className="row">
+                                            <img className="card-image" role="button" src={"/images/" + adv.image} />
+                                            {/* <img src={card} className="card-img-top" alt="photo" /> */}
+                                            <div className="card-body col">
                                                 <div className="row">
-                                                    <img className="card-image" role="button" src={"/images/" + adv.image} />
-                                                    {/* <img src={card} className="card-img-top" alt="photo" /> */}
-                                                    <div className="card-body col">
-                                                        <div className="row">
-                                                            <div className="col-9">
-                                                                <h5 className="card-title">{adv.name}</h5>
-                                                                <p className="card-text">{adv.description}</p>
-                                                                <p className="card-text2">{adv.price} грн</p>
-                                                            </div>
-                                                            <div className=" col-3 ">
-                                                                <a href="#" className="btn " >
-                                                                    <img src={card_plas} alt="+" onClick={() => addToBasket(adv.id)}></img>
-                                                                </a>
-                                                                <a href="#" className="btn ">
-                                                                    <img src={card_h} alt="like" onClick={() => deleteFromLike(adv.id)}></img>
-                                                                </a></div></div>
+                                                    <div className="col-9">
+                                                        <h5 className="card-title">{adv.name}</h5>
+                                                        <p className="card-text">{adv.description}</p>
+                                                        <p className="card-text2">{adv.price} грн</p>
                                                     </div>
-                                                </div>
+                                                    <div className=" col-3 ">
+                                                        <a href="#" className="btn " >
+                                                            <img src={card_plas} alt="+"></img>
+                                                        </a>
+                                                        <a href="#" className="btn ">
+                                                            <img src={card_h} alt="like" onClick={() => deleteFromLike(adv.id)}></img>
+                                                        </a></div></div>
                                             </div>
-                                        );
-                                    })
-                                }
-                                </div>)
-                            :
-                            (
-                                <div className="text-center mt-5">
-                                    <h1 className="text-nonimage mt-5">Немає обраних оголошень</h1>
-                                    <img src={noImage}></img>
-                                </div>
-                            )
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
+                        </div>) 
+                        : 
+                        (
+                            <div className="text-center mt-5">
+                                <h1 className="text-nonimage mt-5">Немає обраних оголошень</h1>
+                                <img src={noImage}></img>
+                            </div>
+                        )
                         }
                     </div>
                 </div>

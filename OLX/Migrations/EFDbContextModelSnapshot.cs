@@ -150,33 +150,6 @@ namespace OLX.Migrations
                     b.ToTable("tblAdvertisement");
                 });
 
-            modelBuilder.Entity("OLX.Entities.BasketEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AdvId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdvId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("tblBasketEntities");
-                });
-
             modelBuilder.Entity("OLX.Entities.CartEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -442,25 +415,6 @@ namespace OLX.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("OLX.Entities.BasketEntity", b =>
-                {
-                    b.HasOne("OLX.Entities.AdvertisementEntity", "Advertisement")
-                        .WithMany()
-                        .HasForeignKey("AdvId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OLX.Entities.DbUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Advertisement");
 
                     b.Navigation("User");
                 });

@@ -13,6 +13,7 @@ namespace OLX.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly EFDbContext _context;
@@ -34,7 +35,7 @@ namespace OLX.Controllers
         {
             try
             {
-                string userName = AccountController._userName;
+                string userName = User.Claims.FirstOrDefault().Value;
                 var user = await _userManager.FindByEmailAsync(userName);
 
                 var entity = _mapper.Map<OrderEntity>(model);
@@ -49,6 +50,10 @@ namespace OLX.Controllers
                     _context.OrderItems.Add(item);
                 }
                 _context.SaveChanges();
+
+                var cartData = _context.Carts.Where(x => x.UserId == user.Id).ToArray();
+                _context.Carts.RemoveRange(cartData);
+                _context.SaveChanges();
                 return Ok();
             }
             catch (Exception ex)
@@ -59,7 +64,7 @@ namespace OLX.Controllers
                 });
             }
         }
-       
+
         [HttpGet]
         [Route("list")]
         public async Task<IActionResult> List()
